@@ -19,6 +19,7 @@ import type {
   CoinDto,
   LoginRequestDto,
   SignupRequestDto,
+  WalletRequestDto,
 } from '../models/index';
 import {
     AuthResponseDtoFromJSON,
@@ -29,6 +30,8 @@ import {
     LoginRequestDtoToJSON,
     SignupRequestDtoFromJSON,
     SignupRequestDtoToJSON,
+    WalletRequestDtoFromJSON,
+    WalletRequestDtoToJSON,
 } from '../models/index';
 
 export interface CoinIdGetRequest {
@@ -176,6 +179,32 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async readCoins(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CoinDto>> {
         const response = await this.readCoinsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get wallet balance
+     */
+    async walletGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WalletRequestDto>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/wallet`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WalletRequestDtoFromJSON));
+    }
+
+    /**
+     * Get wallet balance
+     */
+    async walletGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WalletRequestDto>> {
+        const response = await this.walletGetRaw(initOverrides);
         return await response.value();
     }
 

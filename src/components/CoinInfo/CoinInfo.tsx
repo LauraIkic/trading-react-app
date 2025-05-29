@@ -1,7 +1,5 @@
 import React from 'react';
 import {CoinDto} from "../../api";
-import {useQuery} from "@tanstack/react-query";
-import {readCoinsQuery} from "../../queries/readCoins";
 interface Props {
     coin: CoinDto;
 }
