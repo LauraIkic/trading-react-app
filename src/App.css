@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+.wallet-container {
+  background-color: #f0f2f5;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-container input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  width: 120px;
+}
+
+.wallet-container button {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
