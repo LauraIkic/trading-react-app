@@ -4,8 +4,8 @@
 
 In the project directory, you can run:
 
-### `npm start`
+`npm start`
 
 Generate api:
 
-### `openapi-generator-cli generate -i resources/openapi.yaml -g typescript-fetch -o ./src/api-client`
+`openapi-generator-cli generate -i resources/openapi.yaml -g typescript-fetch -o ./src/api-client`
