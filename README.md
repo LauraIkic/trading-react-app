@@ -7,5 +7,5 @@ In the project directory, you can run:
 `npm start`
 
 Generate api:
-
+npm install -g @openapitools/openapi-generator-cli
 `openapi-generator-cli generate -i resources/openapi.yaml -g typescript-fetch -o ./src/api-client`
