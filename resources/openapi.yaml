@@ -1,0 +1,181 @@
+openapi: 3.0.3
+info:
+  title: Auth & CoinInfo API
+  version: 1.0.0
+  description: API for authentication and coin data
+
+servers:
+  - url: http://localhost:3000/api
+
+paths:
+  /auth/login:
+    post:
+      summary: User login
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestDto'
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '401':
+          description: Unauthorized
+
+  /auth/signup:
+    post:
+      summary: User signup
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequestDto'
+      responses:
+        '201':
+          description: Successful signup
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '400':
+          description: Bad request
+
+  /coin:
+    get:
+      summary: Get list of all coins
+      operationId: readCoins
+      responses:
+        '200':
+          description: A list of coins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CoinDto'
+
+  /coin/{id}:
+    get:
+      summary: Get a specific coin by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single coin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoinDto'
+        '404':
+          description: CoinInfo not found
+
+components:
+  schemas:
+    LoginRequestDto:
+      type: object
+      required:
+        - mail
+        - password
+      properties:
+        mail:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    SignupRequestDto:
+      type: object
+      required:
+        - name
+        - mail
+        - password
+      properties:
+        name:
+          type: string
+        mail:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    AuthResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+        userId:
+          type: string
+        expiresIn:
+          type: integer
+          description: Token expiry time in seconds
+
+    CoinDto:
+      type: object
+      properties:
+        id:
+          type: string
+        symbol:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        current_price:
+          type: number
+        market_cap:
+          type: integer
+        market_cap_rank:
+          type: integer
+        fully_diluted_valuation:
+          type: integer
+        total_volume:
+          type: integer
+        high_24h:
+          type: number
+        low_24h:
+          type: number
+        price_change_24h:
+          type: number
+        price_change_percentage_24h:
+          type: number
+        market_cap_change_24h:
+          type: integer
+        market_cap_change_percentage_24h:
+          type: number
+        circulating_supply:
+          type: integer
+        total_supply:
+          type: integer
+        max_supply:
+          type: integer
+        ath:
+          type: number
+        ath_change_percentage:
+          type: number
+        ath_date:
+          type: string
+          format: date-time
+        atl:
+          type: number
+        atl_change_percentage:
+          type: number
+        atl_date:
+          type: string
+          format: date-time
+        last_updated:
+          type: string
+          format: date-time
