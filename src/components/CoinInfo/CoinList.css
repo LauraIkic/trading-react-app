@@ -1,0 +1,117 @@
+/* Container und Überschrift */
+.coin-list-container {
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+.coin-list-container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Tabelle */
+.coin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.coin-table thead {
+  background: #fafafa;
+}
+.coin-table th,
+.coin-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+.coin-table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Bitpanda Style Tabelle */
+.bitpanda-style-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px; /* kleiner Abstand */
+}
+
+.bitpanda-style-table thead th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: #555;
+  padding: 0.75rem 1rem;
+}
+
+.bitpanda-style-table tbody td {
+  background: #fff;
+  padding: 0.75rem 1rem;
+}
+
+/* Name-Zelle mit Logo */
+.coin-cell-name {
+  display: flex;
+  align-items: center;
+}
+.coin-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.coin-name {
+  font-weight: 500;
+}
+.coin-symbol {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+/* Farbige Veränderungen */
+.positive {
+  color: #1a8917;
+}
+.negative {
+  color: #c92a2a;
+}
+
+/* Order-Button */
+.order-btn {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.order-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Asset Details */
+.asset-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.coin-details .coin-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.coin-details .coin-symbol {
+  font-size: 0.75rem;
+  color: #888;
+}
