@@ -1,6 +1,6 @@
 import React from 'react';
 import {PortfolioInfo} from "./PortfolioInfo";
-import {CoinList} from "./CoinList";
+import {CoinList} from "./CoinInfo/CoinList";
 import {WalletInfo} from "./WalletInfo";
 
 export const Dashboard: React.FunctionComponent = () => {

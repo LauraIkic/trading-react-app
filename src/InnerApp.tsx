@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {SignupForm} from "./form/SignupForm";
 import {CoinList} from "./components/CoinInfo/CoinList";
-import {Dashboard} from "./components/CoinInfo/Dashboard";
+import {Dashboard} from "./components/Dashboard";
 
 function InnerApp() {
     // const [token, setToken] = useState<string | null>(null);
