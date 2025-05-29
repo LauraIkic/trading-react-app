@@ -1,12 +1,12 @@
 import React from 'react';
-import {CoinDto} from "../../api";
-import {useQuery} from "@tanstack/react-query";
-import {readCoinsQuery} from "../../queries/readCoins";
+import { CoinDto } from "../../api";
+import { useQuery } from "@tanstack/react-query";
+import './CoinList.css';
+import { TableWrapper, StyledHeading } from "./CoinList.styles";
 
 export const CoinList: React.FunctionComponent = () => {
-
-    // const { data } = useQuery(readCoinsQuery);
-    const data = [
+    // Dummy-Daten (Platzhalter)
+    const dummyData: CoinDto[] = [
         {
             "id": "bitcoin",
             "symbol": "btc",
@@ -237,16 +237,64 @@ export const CoinList: React.FunctionComponent = () => {
         },
     ];
 
+    // REST-Call (echte Coins)
+    //const { data: realCoins, isLoading, error } = useQuery(readCoinsQuery);
+
+    const handleOrder = (coin: CoinDto) => {
+        // TODO: Replace with real REST call (e.g., fetch or axios)
+        console.log(`Ordering coin: ${coin.name}`);
+    };
+
     return (
-        <div>
-            <h1>Coin List</h1>
-            <ul>
-                {data?.map((coin: CoinDto) => (
-                    <li key={coin.id}>
-                        <strong>{coin.name}</strong>
-                    </li>
+        <TableWrapper>
+            <StyledHeading>Coin List</StyledHeading>
+            <table className="bitpanda-style-table">
+                <thead>
+                    <tr>
+                        <th>Asset</th>
+                        <th>Preis</th>
+                        <th>Market Cap</th>
+                        <th>Aktion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {dummyData.map((coin: CoinDto) => (
+                        <tr key={coin.id}>
+                            <td>
+                                <div className="asset-cell">
+                                    <img className="coin-logo" src={coin.image} alt={coin.name} />
+                                    <div className="coin-details">
+                                        <div className="coin-name">{coin.name}</div>
+                                        <div className="coin-symbol">{coin.symbol.toUpperCase()}</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>${coin.current_price}</td>
+                            <td>${coin.market_cap.toLocaleString()}</td>
+                            <td>
+                                <button className="order-btn" onClick={() => handleOrder(coin)}>
+                                    Order
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+
+{/*             <h2>Echte Coins (vom Backend)</h2>
+            {isLoading && <div>Lade Coins...</div>}
+            {error && <div>Fehler beim Laden der Coins</div>}
+            <div className="coin-list-grid">
+                {realCoins && Array.isArray(realCoins) && realCoins.map((coin: CoinDto) => (
+                    <div className="coin-card" key={coin.id}>
+                        <img className="coin-logo" src={coin.image} alt={coin.name} />
+                        <div className="coin-name">{coin.name}</div>
+                        <div className="coin-symbol">{coin.symbol?.toUpperCase()}</div>
+                        <div className="coin-price">${coin.currentPrice}</div>
+                        <div className="coin-marketcap">Market Cap: ${coin.marketCap?.toLocaleString()}</div>
+                    </div>
                 ))}
-            </ul>
-        </div>
+            </div> */}
+        </TableWrapper>
     );
 };
