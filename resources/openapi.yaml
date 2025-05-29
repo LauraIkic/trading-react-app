@@ -80,6 +80,18 @@ paths:
                 $ref: '#/components/schemas/CoinDto'
         '404':
           description: CoinInfo not found
+  /wallet:
+    get:
+      summary: Get wallet balance
+      responses:
+        '200':
+          description: Get wallet balance
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/WalletRequestDto'
 
 components:
   schemas:
@@ -179,3 +191,11 @@ components:
         last_updated:
           type: string
           format: date-time
+
+    WalletRequestDto:
+      type: object
+      properties:
+        id:
+          type: string
+        balance:
+          type: number
