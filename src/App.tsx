@@ -1,10 +1,11 @@
 import React from 'react';
-import './theme/index.css'; // Theme zuerst importieren
-import './App.css';         // App-spezifische Styles danach
+import './theme/index.css';
+import './App.css';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import InnerApp from './InnerApp';
 import { myTheme } from './theme/theme';
+import { AuthProvider } from './context/AuthContext';
 
 function App() {
   const queryClient = new QueryClient();
@@ -12,9 +13,11 @@ function App() {
   return (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider theme={myTheme}>
-          <InnerApp />
-        </ThemeProvider>
+        <AuthProvider> 
+          <ThemeProvider theme={myTheme}>
+            <InnerApp />
+          </ThemeProvider>
+        </AuthProvider> 
       </QueryClientProvider>
     </React.StrictMode>
   );

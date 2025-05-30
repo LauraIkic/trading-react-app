@@ -109,6 +109,51 @@ paths:
                 $ref: '#/components/schemas/OrderDto'
         '400':
           description: Bad request
+  /portfolio:
+    get:
+      summary: Get user portfolio
+      operationId: readPortfolio
+      responses:
+        '200':
+          description: User portfolio
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioDto'
+        '401':
+          description: Unauthorized
+
+  /portfolio/items:
+    get:
+      summary: Get portfolio items
+      operationId: getPortfolioItems
+      responses:
+        '200':
+          description: List of portfolio items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PortfolioItemDto'
+        '401':
+          description: Unauthorized
+
+  /orders:
+    get:
+      summary: Get user orders
+      operationId: getMyOrders
+      responses:
+        '200':
+          description: List of user orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderDto'
+        '401':
+          description: Unauthorized
 
 components:
   schemas:
@@ -244,5 +289,41 @@ components:
           type: number
         type:
           type: string
+          enum: [BUY, SELL]
         status:
           type: string
+          enum: [OPEN, EXECUTED, CANCELLED]
+        userId:
+          type: string
+        referenceId:
+          type: string
+        version:
+          type: integer
+
+    PortfolioDto:
+      type: object
+      properties:
+        id:
+          type: string
+        portfolioItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/PortfolioItemDto'
+
+    PortfolioItemDto:
+      type: object
+      properties:
+        id:
+          type: string
+        coinId:
+          type: string
+        coinName:
+          type: string
+        coinSymbol:
+          type: string
+        quantity:
+          type: number
+        averagePrice:
+          type: number
+        currentPrice:
+          type: number

@@ -8,7 +8,6 @@ export const Dashboard: React.FunctionComponent = () => {
     return (
         <div>
             <WalletInfo/>
-            <PortfolioInfo/>
             <CoinList/>
         </div>
     );

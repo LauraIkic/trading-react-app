@@ -1,9 +1,0 @@
-apis/DefaultApi.ts
-apis/index.ts
-index.ts
-models/AuthResponseDto.ts
-models/CoinDto.ts
-models/LoginRequestDto.ts
-models/SignupRequestDto.ts
-models/index.ts
-runtime.ts

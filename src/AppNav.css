@@ -27,6 +27,7 @@
 .nav-links {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 
 .nav-links a {
@@ -43,4 +44,86 @@
 .nav-links a.active {
   color: #428bca;
   border-bottom: 2px solid #428bca;
+}
+
+/* ========== NAVIGATION AUTH BUTTONS ========== */
+.nav-auth-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 36px;
+}
+
+.nav-auth-btn.login {
+  background: #007bff;
+  color: white;
+}
+
+.nav-auth-btn.login:hover {
+  background: #0056b3;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
+}
+
+.nav-auth-btn.logout {
+  background: #dc3545;
+  color: white;
+}
+
+.nav-auth-btn.logout:hover {
+  background: #c82333;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+/* ========== USER STATUS ========== */
+.user-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.welcome-text {
+  color: #28a745;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* ========== DISABLED BUTTON STYLES ========== */
+.order-btn.disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.order-btn.disabled:hover {
+  background: #6c757d;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .app-nav {
+    padding: 0 1rem;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  .nav-auth-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  
+  /* Stack user info vertically on mobile */
+  .nav-links > div {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 }
