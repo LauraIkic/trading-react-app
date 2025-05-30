@@ -1,4 +1,6 @@
 import React from 'react';
+import './theme/index.css'; // Theme zuerst importieren
+import './App.css';         // App-spezifische Styles danach
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import InnerApp from './InnerApp';
