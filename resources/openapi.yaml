@@ -90,6 +90,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletRequestDto'
+  /order:
+    post:
+      summary: Create a new order
+      operationId: createOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateDto'
+      responses:
+        '200':
+          description: Order created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDto'
+        '400':
+          description: Bad request
 
 components:
   schemas:
@@ -197,3 +216,33 @@ components:
           type: string
         balance:
           type: number
+    OrderCreateDto:
+      type: object
+      required:
+        - coinId
+        - quantity
+        - type
+      properties:
+        coinId:
+          type: string
+        quantity:
+          type: number
+        type:
+          type: string
+          enum: [BUY, SELL]
+    
+    OrderDto:
+      type: object
+      properties:
+        id:
+          type: string
+        coinId:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        type:
+          type: string
+        status:
+          type: string

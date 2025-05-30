@@ -3,5 +3,7 @@
 export * from './AuthResponseDto';
 export * from './CoinDto';
 export * from './LoginRequestDto';
+export * from './OrderCreateDto';
+export * from './OrderDto';
 export * from './SignupRequestDto';
-// export * from './WalletRequestDto'; // AUSKOMMENTIEREN bis die Datei existiert
+export * from './WalletRequestDto';

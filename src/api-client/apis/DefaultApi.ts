@@ -18,6 +18,8 @@ import type {
   AuthResponseDto,
   CoinDto,
   LoginRequestDto,
+  OrderCreateDto,
+  OrderDto,
   SignupRequestDto,
   WalletRequestDto,
 } from '../models/index';
@@ -28,6 +30,10 @@ import {
     CoinDtoToJSON,
     LoginRequestDtoFromJSON,
     LoginRequestDtoToJSON,
+    OrderCreateDtoFromJSON,
+    OrderCreateDtoToJSON,
+    OrderDtoFromJSON,
+    OrderDtoToJSON,
     SignupRequestDtoFromJSON,
     SignupRequestDtoToJSON,
     WalletRequestDtoFromJSON,
@@ -36,6 +42,10 @@ import {
 
 export interface CoinIdGetRequest {
     id: string;
+}
+
+export interface CreateOrderRequest {
+    orderCreateDto: OrderCreateDto;
 }
 
 export interface CreateUserRequest {
@@ -81,6 +91,42 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async coinIdGet(requestParameters: CoinIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinDto> {
         const response = await this.coinIdGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create a new order
+     */
+    async createOrderRaw(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderDto>> {
+        if (requestParameters['orderCreateDto'] == null) {
+            throw new runtime.RequiredError(
+                'orderCreateDto',
+                'Required parameter "orderCreateDto" was null or undefined when calling createOrder().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/order`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrderCreateDtoToJSON(requestParameters['orderCreateDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Create a new order
+     */
+    async createOrder(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderDto> {
+        const response = await this.createOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -185,7 +231,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Get wallet balance
      */
-    async walletGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WalletRequestDto>>> {
+    async walletGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletRequestDto>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -197,13 +243,13 @@ export class DefaultApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WalletRequestDtoFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => WalletRequestDtoFromJSON(jsonValue));
     }
 
     /**
      * Get wallet balance
      */
-    async walletGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WalletRequestDto>> {
+    async walletGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletRequestDto> {
         const response = await this.walletGetRaw(initOverrides);
         return await response.value();
     }
