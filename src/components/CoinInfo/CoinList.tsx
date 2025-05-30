@@ -278,7 +278,7 @@ export const CoinList: React.FunctionComponent = () => {
                                 </div>
                             </td>
                             <td>${coin.currentPrice}</td>
-                            <td>${coin.marketCap.toLocaleString()}</td>
+                            <td>${coin.marketCap?.toLocaleString() || 'N/A'}</td>
                             <td>
                                 <button className="order-btn" onClick={() => handleOrder(coin)}>
                                     Order

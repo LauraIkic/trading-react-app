@@ -1,18 +1,20 @@
-// filepath: /Users/aylin/FH Projekte/SYSI/SYI-Gruppenprojekt/trading-react-app/src/components/CoinInfo/CoinList.styles.tsx
-import styled, { DefaultTheme } from "styled-components";
+import styled from "styled-components";
+import { myTheme } from "../../theme/theme";
 
-export const TableWrapper = styled.div<{ theme: DefaultTheme }>`
-  background-color: ${({ theme }) => theme.colors.background};
-  padding: ${({ theme }) => theme.spacing(4)};
+type MyTheme = typeof myTheme;
+
+export const TableWrapper = styled.div<{ theme?: MyTheme }>`
+  background-color: ${({ theme }) => theme?.colors?.background || '#f9f9f9'};
+  padding: ${({ theme }) => theme?.spacing?.(4) || '2rem'};
   font-family: sans-serif;
 `;
 
-export const StyledHeading = styled.h1<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.colors.primary};
+export const StyledHeading = styled.h1<{ theme?: MyTheme }>`
+  color: ${({ theme }) => theme?.colors?.primary || '#2e2e2e'};
 `;
 
-export const StyledLink = styled.a<{ theme: DefaultTheme }>`
-  color: ${({ theme }) => theme.colors.accent};
+export const StyledLink = styled.a<{ theme?: MyTheme }>`
+  color: ${({ theme }) => theme?.colors?.accent || '#428bca'};
   text-decoration: none;
   &:hover {
     text-decoration: underline;
