@@ -4,4 +4,4 @@ export * from './AuthResponseDto';
 export * from './CoinDto';
 export * from './LoginRequestDto';
 export * from './SignupRequestDto';
-export * from './WalletRequestDto';
+// export * from './WalletRequestDto'; // AUSKOMMENTIEREN bis die Datei existiert

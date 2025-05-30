@@ -5,7 +5,7 @@ info:
   description: API for authentication and coin data
 
 servers:
-  - url: http://localhost:3000/api
+  - url: http://localhost:5456/api
 
 paths:
   /auth/login:
@@ -89,9 +89,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                items:
-                  $ref: '#/components/schemas/WalletRequestDto'
+                $ref: '#/components/schemas/WalletRequestDto'
 
 components:
   schemas:
