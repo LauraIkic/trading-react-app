@@ -1,88 +1,74 @@
-/* filepath: /Users/aylin/FH Projekte/SYSI/SYI-Gruppenprojekt/trading-react-app/src/components/Auth/AuthModal.tsx */
 import React, { useState } from 'react';
 import './AuthModal.css';
-import { useAuth } from '../../context/AuthContext';
+import { useLogin } from '../../mutation/useLoginUser';
+import { useCreateUser } from '../../mutation/useCreateUser';
 
 interface AuthModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onSuccess: () => void; // Geändert: kein Parameter mehr
+    onSuccess: () => void;
 }
 
 export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess }) => {
-    const { login } = useAuth();
     const [isLogin, setIsLogin] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
         mail: '',
         password: '',
-        userName: ''
+        userName: '',
     });
 
-    if (!isOpen) return null;
+    const { mutateAsync: loginMutation } = useLogin();
+    const { mutateAsync: registerMutation } = useCreateUser();
+
+    const handleInputChange = (field: string, value: string) => {
+        setFormData(prev => ({ ...prev, [field]: value }));
+    };
 
     const handleSubmit = async () => {
         setIsLoading(true);
-        
         try {
-            const endpoint = isLogin ? '/api/auth/login' : '/api/auth/register';
-            const payload = isLogin 
-                ? { mail: formData.mail, password: formData.password }
-                : { mail: formData.mail, password: formData.password, userName: formData.userName };
-
-            console.log('Auth request:', `http://localhost:5456${endpoint}`);
-            console.log('Payload:', payload);
-
-            const response = await fetch(`http://localhost:5456${endpoint}`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-
-            if (response.ok) {
-                const authResponseDto = await response.json();
-                
-                if (authResponseDto.status) {
-                    await login(authResponseDto);
-                    onSuccess(); // Korrigiert: ohne Parameter
-                    onClose();
-                    alert(authResponseDto.message || 'Authentication successful!');
-                } else {
-                    alert(authResponseDto.message || 'Authentication failed');
-                }
+            if (isLogin) {
+                await loginMutation({
+                    mail: formData.mail,
+                    password: formData.password,
+                });
             } else {
-                const errorText = await response.text();
-                console.error('Auth error:', errorText);
-                alert(isLogin ? 'Login failed' : 'Registration failed');
+                await registerMutation({
+                    mail: formData.mail,
+                    password: formData.password,
+                    name: formData.userName,
+                });
             }
+            onSuccess();
+            onClose();
         } catch (error) {
-            console.error('Auth error:', error);
-            alert('Connection error');
+            console.error('Authentication failed:', error);
         } finally {
             setIsLoading(false);
         }
     };
 
-    const handleInputChange = (field: string, value: string) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
-    };
+    if (!isOpen) return null;
 
     return (
         <div className="modal-overlay">
             <div className="modal">
                 <h2>{isLogin ? 'Login' : 'Registrierung'}</h2>
                 <p className="text-muted">
-                    {isLogin ? 'Melde dich an um Kryptowährungen zu kaufen' : 'Erstelle einen Account'}
+                    {isLogin
+                        ? 'Melde dich an, um Kryptowährungen zu kaufen'
+                        : 'Erstelle einen Account'}
                 </p>
 
                 <div className="currency-switch">
-                    <button 
+                    <button
                         className={`switch-btn ${isLogin ? 'active' : ''}`}
                         onClick={() => setIsLogin(true)}
                     >
                         Login
                     </button>
-                    <button 
+                    <button
                         className={`switch-btn ${!isLogin ? 'active' : ''}`}
                         onClick={() => setIsLogin(false)}
                     >
@@ -90,7 +76,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
                     </button>
                 </div>
 
-                {/* Form */}
                 <div className="auth-form">
                     {!isLogin && (
                         <input
@@ -102,7 +87,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
                             required
                         />
                     )}
-                    
                     <input
                         type="email"
                         placeholder="Email"
@@ -111,7 +95,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
                         className="auth-input"
                         required
                     />
-                    
                     <input
                         type="password"
                         placeholder="Password"
@@ -122,13 +105,17 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
                     />
                 </div>
 
-                {/* Buttons */}
-                <button 
-                    className="buy-btn" 
+                <button
+                    className="buy-btn"
                     onClick={handleSubmit}
-                    disabled={isLoading || !formData.mail || !formData.password || (!isLogin && !formData.userName)}
+                    disabled={
+                        isLoading ||
+                        !formData.mail ||
+                        !formData.password ||
+                        (!isLogin && !formData.userName)
+                    }
                 >
-                    {isLoading ? 'Loading...' : (isLogin ? 'Login' : 'Absenden')}
+                    {isLoading ? 'Loading...' : isLogin ? 'Login' : 'Absenden'}
                 </button>
 
                 <button className="cancel-btn" onClick={onClose}>

@@ -1,38 +1,31 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
-import {ThemeProvider} from "styled-components";
-import {myTheme} from "./theme/theme";
 import {CoinList} from "./components/CoinInfo/CoinList";
 import {Dashboard} from "./components/Dashboard";
 import {AuthModal} from "./components/Auth/AuthModal";
-import {useAuth} from './context/AuthContext';
 import './AppNav.css';
+import {useAuthStore} from "./stores/useAuthenticationStore";
 
 function InnerApp() {
-    const {user, isLoggedIn, logout, loading} = useAuth();
+    const user = useAuthStore();
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-    if (loading) {
-        return <div className="loading">Loading...</div>;
-    }
-
     return (
-        <ThemeProvider theme={myTheme}>
             <BrowserRouter>
                 <nav className="app-nav">
                     <div className="nav-logo">
                         <Link to="/">CRYPT</Link>
                     </div>
                     <div className="nav-links">
-                        <Link to="/" style={{marginRight: myTheme.spacing(2)}}>Home</Link>
-                        <Link to="/coins" style={{marginRight: myTheme.spacing(2)}}>Coins</Link>
+                        {/*<Link to="/" style={{marginRight: myTheme.spacing(2)}}>Home</Link>*/}
+                        {/*<Link to="/coins" style={{marginRight: myTheme.spacing(2)}}>Coins</Link>*/}
 
-                        {isLoggedIn && user ? (
+                        {user.isAuthenticated ? (
                             <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
-                                <span>Welcome, {user.userName}!</span>
+                                <span>Welcome !</span>
                                 <button
                                     className="nav-auth-btn logout"
-                                    onClick={logout}
+                                    onClick={() => {}}
                                 >
                                     Logout
                                 </button>
@@ -41,8 +34,7 @@ function InnerApp() {
                             <button
                                 className="nav-auth-btn login"
                                 onClick={() => setIsAuthModalOpen(true)}
-                            >
-                                Login
+                            >Login
                             </button>
                         )}
                     </div>
@@ -61,7 +53,6 @@ function InnerApp() {
                     onSuccess={() => setIsAuthModalOpen(false)}
                 />
             </BrowserRouter>
-        </ThemeProvider>
     );
 }
 
