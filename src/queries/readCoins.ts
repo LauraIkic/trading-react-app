@@ -6,7 +6,7 @@ const api = new DefaultApi(new Configuration({ basePath: 'http://localhost:5456/
 export const readCoinsQuery = queryOptions({
     queryKey: [QueryKeyEnum.coins],
     queryFn: () => api.readCoins(),
-    placeholderData: () => [
+    /* placeholderData: () => [
         {
             "id": "ethereum",
             "symbol": "eth",
@@ -207,7 +207,7 @@ export const readCoinsQuery = queryOptions({
             "roi": null,
             "last_updated": "2025-05-29T08:21:46.368Z"
         },
-    ]
+    ] */
 
 });
 

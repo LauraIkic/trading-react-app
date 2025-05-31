@@ -1,0 +1,257 @@
+/* ========== MODAL OVERLAY & CONTAINER ========== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    min-width: 320px;
+    max-width: 400px;
+    text-align: center;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal h2 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.text-muted {
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+/* ========== TOGGLE BUTTONS ========== */
+.currency-switch {
+    display: flex;
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 4px;
+    margin: 1.5rem 0;
+    gap: 4px;
+}
+
+.switch-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    color: #666;
+}
+
+.switch-btn.active {
+    background: white;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.switch-btn:hover:not(.active) {
+    background: #e9ecef;
+}
+
+/* ========== AMOUNT DISPLAY ========== */
+.amount-display {
+    margin: 2rem 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.amount-input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.amount-input {
+    width: auto;
+    border: 2px solid #e0e0e0;
+    font-size: 2rem;
+    font-weight: 300;
+    text-align: center;
+    background: transparent;
+    color: #333;
+    min-width: 80px;
+    max-width: 200px;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    transition: border-color 0.2s ease;
+    margin: 0 auto;
+}
+
+.amount-input:focus {
+    outline: none;
+}
+
+.currency-symbol {
+    font-size: 3rem;
+    font-weight: 300;
+    color: #333;
+    margin-left: 0.5rem;
+}
+
+.conversion-text {
+    font-size: 1rem;
+    color: #666;
+    margin: 0.5rem 0 0 0;
+    font-style: italic;
+}
+
+/* ========== QUICK SELECTION ========== */
+.quick-amounts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin: 2rem 0;
+}
+
+.quick-amounts button {
+    padding: 12px 8px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #007bff;
+    transition: all 0.2s;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quick-amounts button:hover {
+    border-color: #007bff;
+    background: #f8f9ff;
+}
+
+.quick-amounts button:active {
+    transform: translateY(1px);
+}
+
+/* ========== ACTION BUTTONS ========== */
+.buy-btn {
+    width: 100%;
+    padding: 16px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 1rem 0 0.5rem 0;
+    transition: all 0.2s;
+    min-height: 52px;
+}
+
+.buy-btn:hover {
+    background: #218838;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+.buy-btn:active {
+    transform: translateY(0);
+}
+
+.cancel-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 1rem;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.cancel-btn:hover {
+    color: #333;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 480px) {
+    .modal {
+        min-width: 280px;
+        max-width: 90vw;
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .amount-input {
+        font-size: 2.5rem;
+        min-width: 80px;
+    }
+    
+    .currency-symbol {
+        font-size: 2.5rem;
+    }
+    
+    .quick-amounts {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    .quick-amounts button {
+        padding: 14px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ========== ACCESSIBILITY ========== */
+.modal:focus {
+    outline: none;
+}
+
+.switch-btn:focus,
+.buy-btn:focus,
+.cancel-btn:focus,
+.quick-amounts button:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+}
+
+.amount-input:focus {
+    outline: 2px solid #007bff;
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* ========== LOADING STATE (optional) ========== */
+.buy-btn:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.buy-btn:disabled:hover {
+    background: #6c757d;
+    transform: none;
+    box-shadow: none;
+}
