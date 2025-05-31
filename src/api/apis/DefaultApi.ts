@@ -19,6 +19,7 @@ import type {
   CoinDto,
   LoginRequestDto,
   SignupRequestDto,
+  WalletRequestDto,
 } from '../models/index';
 import {
     AuthResponseDtoFromJSON,
@@ -29,121 +30,28 @@ import {
     LoginRequestDtoToJSON,
     SignupRequestDtoFromJSON,
     SignupRequestDtoToJSON,
+    WalletRequestDtoFromJSON,
+    WalletRequestDtoToJSON,
 } from '../models/index';
-
-export interface AuthLoginPostRequest {
-    loginRequestDto: LoginRequestDto;
-}
-
-export interface AuthSignupPostRequest {
-    signupRequestDto: SignupRequestDto;
-}
 
 export interface CoinIdGetRequest {
     id: string;
+}
+
+export interface CreateUserRequest {
+    signupRequestDto: SignupRequestDto;
+}
+
+export interface LoginUserRequest {
+    loginRequestDto: LoginRequestDto;
 }
 
 /**
  * 
  */
 export class DefaultApi extends runtime.BaseAPI {
-
-    /**
-     * User login
-     */
-    async authLoginPostRaw(requestParameters: AuthLoginPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
-        if (requestParameters['loginRequestDto'] == null) {
-            throw new runtime.RequiredError(
-                'loginRequestDto',
-                'Required parameter "loginRequestDto" was null or undefined when calling authLoginPost().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/auth/login`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: LoginRequestDtoToJSON(requestParameters['loginRequestDto']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AuthResponseDtoFromJSON(jsonValue));
-    }
-
-    /**
-     * User login
-     */
-    async authLoginPost(requestParameters: AuthLoginPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
-        const response = await this.authLoginPostRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * User signup
-     */
-    async authSignupPostRaw(requestParameters: AuthSignupPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
-        if (requestParameters['signupRequestDto'] == null) {
-            throw new runtime.RequiredError(
-                'signupRequestDto',
-                'Required parameter "signupRequestDto" was null or undefined when calling authSignupPost().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/auth/signup`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: SignupRequestDtoToJSON(requestParameters['signupRequestDto']),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => AuthResponseDtoFromJSON(jsonValue));
-    }
-
-    /**
-     * User signup
-     */
-    async authSignupPost(requestParameters: AuthSignupPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
-        const response = await this.authSignupPostRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get list of all coins
-     */
-    async coinGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CoinDto>>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/coin`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CoinDtoFromJSON));
-    }
-
-    /**
-     * Get list of all coins
-     */
-    async coinGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CoinDto>> {
-        const response = await this.coinGetRaw(initOverrides);
-        return await response.value();
+    updateWallet(arg0: { walletRequestDto: WalletRequestDto; }) {
+        throw new Error('Method not implemented.');
     }
 
     /**
@@ -176,6 +84,130 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async coinIdGet(requestParameters: CoinIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinDto> {
         const response = await this.coinIdGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * User signup
+     */
+    async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
+        if (requestParameters['signupRequestDto'] == null) {
+            throw new runtime.RequiredError(
+                'signupRequestDto',
+                'Required parameter "signupRequestDto" was null or undefined when calling createUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/auth/signup`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SignupRequestDtoToJSON(requestParameters['signupRequestDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthResponseDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * User signup
+     */
+    async createUser(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
+        const response = await this.createUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * User login
+     */
+    async loginUserRaw(requestParameters: LoginUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
+        if (requestParameters['loginRequestDto'] == null) {
+            throw new runtime.RequiredError(
+                'loginRequestDto',
+                'Required parameter "loginRequestDto" was null or undefined when calling loginUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/auth/login`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: LoginRequestDtoToJSON(requestParameters['loginRequestDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthResponseDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * User login
+     */
+    async loginUser(requestParameters: LoginUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
+        const response = await this.loginUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get list of all coins
+     */
+    async readCoinsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CoinDto>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/coin`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CoinDtoFromJSON));
+    }
+
+    /**
+     * Get list of all coins
+     */
+    async readCoins(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CoinDto>> {
+        const response = await this.readCoinsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get wallet balance
+     */
+    async walletGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WalletRequestDto>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/wallet`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WalletRequestDtoFromJSON));
+    }
+
+    /**
+     * Get wallet balance
+     */
+    async walletGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WalletRequestDto>> {
+        const response = await this.walletGetRaw(initOverrides);
         return await response.value();
     }
 

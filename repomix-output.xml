@@ -1,0 +1,3756 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+openapitools.json
+package.json
+public/index.html
+public/robots.txt
+README.md
+resources/openapi.yaml
+src/api-client/.openapi-generator-ignore
+src/api-client/.openapi-generator/FILES
+src/api-client/.openapi-generator/VERSION
+src/api-client/apis/DefaultApi.ts
+src/api-client/apis/index.ts
+src/api-client/index.ts
+src/api-client/models/AuthResponseDto.ts
+src/api-client/models/CoinDto.ts
+src/api-client/models/index.ts
+src/api-client/models/LoginRequestDto.ts
+src/api-client/models/SignupRequestDto.ts
+src/api-client/runtime.ts
+src/api/.openapi-generator-ignore
+src/api/.openapi-generator/FILES
+src/api/.openapi-generator/VERSION
+src/api/apis/DefaultApi.ts
+src/api/apis/index.ts
+src/api/index.ts
+src/api/models/AuthRequestDto.ts
+src/api/models/AuthResponseDto.ts
+src/api/models/CoinDto.ts
+src/api/models/index.ts
+src/api/models/LoginRequestDto.ts
+src/api/models/SignupRequestDto.ts
+src/api/runtime.ts
+src/App.css
+src/App.tsx
+src/components/CoinInfo/CoinInfo.tsx
+src/components/CoinInfo/CoinList.tsx
+src/components/Dashboard.tsx
+src/components/PortfolioInfo.tsx
+src/components/WalletInfo.tsx
+src/enums/QueryKeyEnum.ts
+src/form/SignupForm.tsx
+src/index.css
+src/index.js
+src/InnerApp.tsx
+src/mutation/useCreateUser.ts
+src/queries/readCoins.ts
+src/reportWebVitals.js
+src/setupTests.js
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+node_modules
+</file>
+
+<file path="openapitools.json">
+{
+  "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
+  "spaces": 2,
+  "generator-cli": {
+    "version": "7.13.0"
+  }
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "trading-fe",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@tanstack/react-query": "^5.77.2",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "typescript": "^4.9.5"
+  }
+}
+</file>
+
+<file path="public/index.html">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>
+</file>
+
+<file path="public/robots.txt">
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+</file>
+
+<file path="README.md">
+# Crypto Trading React App
+
+## Available Scripts
+`npm install`
+
+In the project directory, you can run:
+
+`npm start`
+
+Generate api:
+`npm install -g @openapitools/openapi-generator-cli`
+
+`openapi-generator-cli generate -i resources/openapi.yaml -g typescript-fetch -o ./src/api-client`
+</file>
+
+<file path="resources/openapi.yaml">
+openapi: 3.0.3
+info:
+  title: Auth & CoinInfo API
+  version: 1.0.0
+  description: API for authentication and coin data
+
+servers:
+  - url: http://localhost:3000/api
+
+paths:
+  /auth/login:
+    post:
+      summary: User login
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestDto'
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '401':
+          description: Unauthorized
+
+  /auth/signup:
+    post:
+      summary: User signup
+      operationId: createUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequestDto'
+      responses:
+        '201':
+          description: Successful signup
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '400':
+          description: Bad request
+
+  /coin:
+    get:
+      summary: Get list of all coins
+      operationId: readCoins
+      responses:
+        '200':
+          description: A list of coins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CoinDto'
+
+  /coin/{id}:
+    get:
+      summary: Get a specific coin by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single coin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoinDto'
+        '404':
+          description: CoinInfo not found
+  /wallet:
+    get:
+      summary: Get wallet balance
+      responses:
+        '200':
+          description: Get wallet balance
+          content:
+            application/json:
+              schema:
+                type: object
+                items:
+                  $ref: '#/components/schemas/WalletRequestDto'
+
+components:
+  schemas:
+    LoginRequestDto:
+      type: object
+      required:
+        - mail
+        - password
+      properties:
+        mail:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    SignupRequestDto:
+      type: object
+      required:
+        - name
+        - mail
+        - password
+      properties:
+        name:
+          type: string
+        mail:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+
+    AuthResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+        userId:
+          type: string
+        expiresIn:
+          type: integer
+          description: Token expiry time in seconds
+
+    CoinDto:
+      type: object
+      properties:
+        id:
+          type: string
+        symbol:
+          type: string
+        name:
+          type: string
+        image:
+          type: string
+        current_price:
+          type: number
+        market_cap:
+          type: integer
+        market_cap_rank:
+          type: integer
+        fully_diluted_valuation:
+          type: integer
+        total_volume:
+          type: integer
+        high_24h:
+          type: number
+        low_24h:
+          type: number
+        price_change_24h:
+          type: number
+        price_change_percentage_24h:
+          type: number
+        market_cap_change_24h:
+          type: integer
+        market_cap_change_percentage_24h:
+          type: number
+        circulating_supply:
+          type: integer
+        total_supply:
+          type: integer
+        max_supply:
+          type: integer
+        ath:
+          type: number
+        ath_change_percentage:
+          type: number
+        ath_date:
+          type: string
+          format: date-time
+        atl:
+          type: number
+        atl_change_percentage:
+          type: number
+        atl_date:
+          type: string
+          format: date-time
+        last_updated:
+          type: string
+          format: date-time
+
+    WalletRequestDto:
+      type: object
+      properties:
+        id:
+          type: string
+        balance:
+          type: number
+</file>
+
+<file path="src/api-client/.openapi-generator-ignore">
+# OpenAPI Generator Ignore
+# Generated by openapi-generator https://github.com/openapitools/openapi-generator
+
+# Use this file to prevent files from being overwritten by the generator.
+# The patterns follow closely to .gitignore or .dockerignore.
+
+# As an example, the C# client generator defines ApiClient.cs.
+# You can make changes and tell OpenAPI Generator to ignore just this file by uncommenting the following line:
+#ApiClient.cs
+
+# You can match any string of characters against a directory, file or extension with a single asterisk (*):
+#foo/*/qux
+# The above matches foo/bar/qux and foo/baz/qux, but not foo/bar/baz/qux
+
+# You can recursively match patterns against a directory, file or extension with a double asterisk (**):
+#foo/**/qux
+# This matches foo/bar/qux, foo/baz/qux, and foo/bar/baz/qux
+
+# You can also negate patterns with an exclamation (!).
+# For example, you can ignore all files in a docs folder with the file extension .md:
+#docs/*.md
+# Then explicitly reverse the ignore rule for a single file:
+#!docs/README.md
+</file>
+
+<file path="src/api-client/.openapi-generator/FILES">
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/AuthResponseDto.ts
+models/CoinDto.ts
+models/LoginRequestDto.ts
+models/SignupRequestDto.ts
+models/WalletRequestDto.ts
+models/index.ts
+runtime.ts
+</file>
+
+<file path="src/api-client/.openapi-generator/VERSION">
+7.13.0
+</file>
+
+<file path="src/api-client/apis/DefaultApi.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+
+import * as runtime from '../runtime';
+import type {
+  AuthResponseDto,
+  CoinDto,
+  LoginRequestDto,
+  SignupRequestDto,
+  WalletRequestDto,
+} from '../models/index';
+import {
+    AuthResponseDtoFromJSON,
+    AuthResponseDtoToJSON,
+    CoinDtoFromJSON,
+    CoinDtoToJSON,
+    LoginRequestDtoFromJSON,
+    LoginRequestDtoToJSON,
+    SignupRequestDtoFromJSON,
+    SignupRequestDtoToJSON,
+    WalletRequestDtoFromJSON,
+    WalletRequestDtoToJSON,
+} from '../models/index';
+
+export interface CoinIdGetRequest {
+    id: string;
+}
+
+export interface CreateUserRequest {
+    signupRequestDto: SignupRequestDto;
+}
+
+export interface LoginUserRequest {
+    loginRequestDto: LoginRequestDto;
+}
+
+/**
+ * 
+ */
+export class DefaultApi extends runtime.BaseAPI {
+
+    /**
+     * Get a specific coin by ID
+     */
+    async coinIdGetRaw(requestParameters: CoinIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinDto>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling coinIdGet().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/coin/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CoinDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a specific coin by ID
+     */
+    async coinIdGet(requestParameters: CoinIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinDto> {
+        const response = await this.coinIdGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * User signup
+     */
+    async createUserRaw(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
+        if (requestParameters['signupRequestDto'] == null) {
+            throw new runtime.RequiredError(
+                'signupRequestDto',
+                'Required parameter "signupRequestDto" was null or undefined when calling createUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/auth/signup`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SignupRequestDtoToJSON(requestParameters['signupRequestDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthResponseDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * User signup
+     */
+    async createUser(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
+        const response = await this.createUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * User login
+     */
+    async loginUserRaw(requestParameters: LoginUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
+        if (requestParameters['loginRequestDto'] == null) {
+            throw new runtime.RequiredError(
+                'loginRequestDto',
+                'Required parameter "loginRequestDto" was null or undefined when calling loginUser().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/auth/login`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: LoginRequestDtoToJSON(requestParameters['loginRequestDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthResponseDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * User login
+     */
+    async loginUser(requestParameters: LoginUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
+        const response = await this.loginUserRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get list of all coins
+     */
+    async readCoinsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CoinDto>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/coin`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CoinDtoFromJSON));
+    }
+
+    /**
+     * Get list of all coins
+     */
+    async readCoins(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CoinDto>> {
+        const response = await this.readCoinsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get wallet balance
+     */
+    async walletGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WalletRequestDto>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/wallet`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WalletRequestDtoFromJSON));
+    }
+
+    /**
+     * Get wallet balance
+     */
+    async walletGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WalletRequestDto>> {
+        const response = await this.walletGetRaw(initOverrides);
+        return await response.value();
+    }
+
+}
+</file>
+
+<file path="src/api-client/apis/index.ts">
+/* tslint:disable */
+/* eslint-disable */
+export * from './DefaultApi';
+</file>
+
+<file path="src/api-client/index.ts">
+/* tslint:disable */
+/* eslint-disable */
+export * from './runtime';
+export * from './apis/index';
+export * from './models/index';
+</file>
+
+<file path="src/api-client/models/AuthResponseDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface AuthResponseDto
+ */
+export interface AuthResponseDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthResponseDto
+     */
+    token?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthResponseDto
+     */
+    userId?: string;
+    /**
+     * Token expiry time in seconds
+     * @type {number}
+     * @memberof AuthResponseDto
+     */
+    expiresIn?: number;
+}
+
+/**
+ * Check if a given object implements the AuthResponseDto interface.
+ */
+export function instanceOfAuthResponseDto(value: object): value is AuthResponseDto {
+    return true;
+}
+
+export function AuthResponseDtoFromJSON(json: any): AuthResponseDto {
+    return AuthResponseDtoFromJSONTyped(json, false);
+}
+
+export function AuthResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthResponseDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'token': json['token'] == null ? undefined : json['token'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'expiresIn': json['expiresIn'] == null ? undefined : json['expiresIn'],
+    };
+}
+
+export function AuthResponseDtoToJSON(json: any): AuthResponseDto {
+    return AuthResponseDtoToJSONTyped(json, false);
+}
+
+export function AuthResponseDtoToJSONTyped(value?: AuthResponseDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'token': value['token'],
+        'userId': value['userId'],
+        'expiresIn': value['expiresIn'],
+    };
+}
+</file>
+
+<file path="src/api-client/models/CoinDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface CoinDto
+ */
+export interface CoinDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof CoinDto
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoinDto
+     */
+    symbol?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoinDto
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoinDto
+     */
+    image?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    currentPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    marketCap?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    marketCapRank?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    fullyDilutedValuation?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    totalVolume?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    high24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    low24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    priceChange24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    priceChangePercentage24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    marketCapChange24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    marketCapChangePercentage24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    circulatingSupply?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    totalSupply?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    maxSupply?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    ath?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    athChangePercentage?: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CoinDto
+     */
+    athDate?: Date;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    atl?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    atlChangePercentage?: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CoinDto
+     */
+    atlDate?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CoinDto
+     */
+    lastUpdated?: Date;
+}
+
+/**
+ * Check if a given object implements the CoinDto interface.
+ */
+export function instanceOfCoinDto(value: object): value is CoinDto {
+    return true;
+}
+
+export function CoinDtoFromJSON(json: any): CoinDto {
+    return CoinDtoFromJSONTyped(json, false);
+}
+
+export function CoinDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CoinDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'id': json['id'] == null ? undefined : json['id'],
+        'symbol': json['symbol'] == null ? undefined : json['symbol'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'image': json['image'] == null ? undefined : json['image'],
+        'currentPrice': json['current_price'] == null ? undefined : json['current_price'],
+        'marketCap': json['market_cap'] == null ? undefined : json['market_cap'],
+        'marketCapRank': json['market_cap_rank'] == null ? undefined : json['market_cap_rank'],
+        'fullyDilutedValuation': json['fully_diluted_valuation'] == null ? undefined : json['fully_diluted_valuation'],
+        'totalVolume': json['total_volume'] == null ? undefined : json['total_volume'],
+        'high24h': json['high_24h'] == null ? undefined : json['high_24h'],
+        'low24h': json['low_24h'] == null ? undefined : json['low_24h'],
+        'priceChange24h': json['price_change_24h'] == null ? undefined : json['price_change_24h'],
+        'priceChangePercentage24h': json['price_change_percentage_24h'] == null ? undefined : json['price_change_percentage_24h'],
+        'marketCapChange24h': json['market_cap_change_24h'] == null ? undefined : json['market_cap_change_24h'],
+        'marketCapChangePercentage24h': json['market_cap_change_percentage_24h'] == null ? undefined : json['market_cap_change_percentage_24h'],
+        'circulatingSupply': json['circulating_supply'] == null ? undefined : json['circulating_supply'],
+        'totalSupply': json['total_supply'] == null ? undefined : json['total_supply'],
+        'maxSupply': json['max_supply'] == null ? undefined : json['max_supply'],
+        'ath': json['ath'] == null ? undefined : json['ath'],
+        'athChangePercentage': json['ath_change_percentage'] == null ? undefined : json['ath_change_percentage'],
+        'athDate': json['ath_date'] == null ? undefined : (new Date(json['ath_date'])),
+        'atl': json['atl'] == null ? undefined : json['atl'],
+        'atlChangePercentage': json['atl_change_percentage'] == null ? undefined : json['atl_change_percentage'],
+        'atlDate': json['atl_date'] == null ? undefined : (new Date(json['atl_date'])),
+        'lastUpdated': json['last_updated'] == null ? undefined : (new Date(json['last_updated'])),
+    };
+}
+
+export function CoinDtoToJSON(json: any): CoinDto {
+    return CoinDtoToJSONTyped(json, false);
+}
+
+export function CoinDtoToJSONTyped(value?: CoinDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'id': value['id'],
+        'symbol': value['symbol'],
+        'name': value['name'],
+        'image': value['image'],
+        'current_price': value['currentPrice'],
+        'market_cap': value['marketCap'],
+        'market_cap_rank': value['marketCapRank'],
+        'fully_diluted_valuation': value['fullyDilutedValuation'],
+        'total_volume': value['totalVolume'],
+        'high_24h': value['high24h'],
+        'low_24h': value['low24h'],
+        'price_change_24h': value['priceChange24h'],
+        'price_change_percentage_24h': value['priceChangePercentage24h'],
+        'market_cap_change_24h': value['marketCapChange24h'],
+        'market_cap_change_percentage_24h': value['marketCapChangePercentage24h'],
+        'circulating_supply': value['circulatingSupply'],
+        'total_supply': value['totalSupply'],
+        'max_supply': value['maxSupply'],
+        'ath': value['ath'],
+        'ath_change_percentage': value['athChangePercentage'],
+        'ath_date': value['athDate'] == null ? undefined : ((value['athDate']).toISOString()),
+        'atl': value['atl'],
+        'atl_change_percentage': value['atlChangePercentage'],
+        'atl_date': value['atlDate'] == null ? undefined : ((value['atlDate']).toISOString()),
+        'last_updated': value['lastUpdated'] == null ? undefined : ((value['lastUpdated']).toISOString()),
+    };
+}
+</file>
+
+<file path="src/api-client/models/index.ts">
+/* tslint:disable */
+/* eslint-disable */
+export * from './AuthResponseDto';
+export * from './CoinDto';
+export * from './LoginRequestDto';
+export * from './SignupRequestDto';
+export * from './WalletRequestDto';
+</file>
+
+<file path="src/api-client/models/LoginRequestDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface LoginRequestDto
+ */
+export interface LoginRequestDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginRequestDto
+     */
+    mail: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginRequestDto
+     */
+    password: string;
+}
+
+/**
+ * Check if a given object implements the LoginRequestDto interface.
+ */
+export function instanceOfLoginRequestDto(value: object): value is LoginRequestDto {
+    if (!('mail' in value) || value['mail'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    return true;
+}
+
+export function LoginRequestDtoFromJSON(json: any): LoginRequestDto {
+    return LoginRequestDtoFromJSONTyped(json, false);
+}
+
+export function LoginRequestDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): LoginRequestDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'mail': json['mail'],
+        'password': json['password'],
+    };
+}
+
+export function LoginRequestDtoToJSON(json: any): LoginRequestDto {
+    return LoginRequestDtoToJSONTyped(json, false);
+}
+
+export function LoginRequestDtoToJSONTyped(value?: LoginRequestDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'mail': value['mail'],
+        'password': value['password'],
+    };
+}
+</file>
+
+<file path="src/api-client/models/SignupRequestDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface SignupRequestDto
+ */
+export interface SignupRequestDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequestDto
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequestDto
+     */
+    mail: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequestDto
+     */
+    password: string;
+}
+
+/**
+ * Check if a given object implements the SignupRequestDto interface.
+ */
+export function instanceOfSignupRequestDto(value: object): value is SignupRequestDto {
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('mail' in value) || value['mail'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    return true;
+}
+
+export function SignupRequestDtoFromJSON(json: any): SignupRequestDto {
+    return SignupRequestDtoFromJSONTyped(json, false);
+}
+
+export function SignupRequestDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): SignupRequestDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'name': json['name'],
+        'mail': json['mail'],
+        'password': json['password'],
+    };
+}
+
+export function SignupRequestDtoToJSON(json: any): SignupRequestDto {
+    return SignupRequestDtoToJSONTyped(json, false);
+}
+
+export function SignupRequestDtoToJSONTyped(value?: SignupRequestDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'name': value['name'],
+        'mail': value['mail'],
+        'password': value['password'],
+    };
+}
+</file>
+
+<file path="src/api-client/runtime.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+
+export const BASE_PATH = "http://localhost:3000/api".replace(/\/+$/, "");
+
+export interface ConfigurationParameters {
+    basePath?: string; // override base path
+    fetchApi?: FetchAPI; // override for fetch implementation
+    middleware?: Middleware[]; // middleware to apply before/after fetch requests
+    queryParamsStringify?: (params: HTTPQuery) => string; // stringify function for query strings
+    username?: string; // parameter for basic security
+    password?: string; // parameter for basic security
+    apiKey?: string | Promise<string> | ((name: string) => string | Promise<string>); // parameter for apiKey security
+    accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string | Promise<string>); // parameter for oauth2 security
+    headers?: HTTPHeaders; //header params we want to use on every request
+    credentials?: RequestCredentials; //value for the credentials param we want to use on each request
+}
+
+export class Configuration {
+    constructor(private configuration: ConfigurationParameters = {}) {}
+
+    set config(configuration: Configuration) {
+        this.configuration = configuration;
+    }
+
+    get basePath(): string {
+        return this.configuration.basePath != null ? this.configuration.basePath : BASE_PATH;
+    }
+
+    get fetchApi(): FetchAPI | undefined {
+        return this.configuration.fetchApi;
+    }
+
+    get middleware(): Middleware[] {
+        return this.configuration.middleware || [];
+    }
+
+    get queryParamsStringify(): (params: HTTPQuery) => string {
+        return this.configuration.queryParamsStringify || querystring;
+    }
+
+    get username(): string | undefined {
+        return this.configuration.username;
+    }
+
+    get password(): string | undefined {
+        return this.configuration.password;
+    }
+
+    get apiKey(): ((name: string) => string | Promise<string>) | undefined {
+        const apiKey = this.configuration.apiKey;
+        if (apiKey) {
+            return typeof apiKey === 'function' ? apiKey : () => apiKey;
+        }
+        return undefined;
+    }
+
+    get accessToken(): ((name?: string, scopes?: string[]) => string | Promise<string>) | undefined {
+        const accessToken = this.configuration.accessToken;
+        if (accessToken) {
+            return typeof accessToken === 'function' ? accessToken : async () => accessToken;
+        }
+        return undefined;
+    }
+
+    get headers(): HTTPHeaders | undefined {
+        return this.configuration.headers;
+    }
+
+    get credentials(): RequestCredentials | undefined {
+        return this.configuration.credentials;
+    }
+}
+
+export const DefaultConfig = new Configuration();
+
+/**
+ * This is the base class for all generated API classes.
+ */
+export class BaseAPI {
+
+    private static readonly jsonRegex = new RegExp('^(:?application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(:?;.*)?$', 'i');
+    private middleware: Middleware[];
+
+    constructor(protected configuration = DefaultConfig) {
+        this.middleware = configuration.middleware;
+    }
+
+    withMiddleware<T extends BaseAPI>(this: T, ...middlewares: Middleware[]) {
+        const next = this.clone<T>();
+        next.middleware = next.middleware.concat(...middlewares);
+        return next;
+    }
+
+    withPreMiddleware<T extends BaseAPI>(this: T, ...preMiddlewares: Array<Middleware['pre']>) {
+        const middlewares = preMiddlewares.map((pre) => ({ pre }));
+        return this.withMiddleware<T>(...middlewares);
+    }
+
+    withPostMiddleware<T extends BaseAPI>(this: T, ...postMiddlewares: Array<Middleware['post']>) {
+        const middlewares = postMiddlewares.map((post) => ({ post }));
+        return this.withMiddleware<T>(...middlewares);
+    }
+
+    /**
+     * Check if the given MIME is a JSON MIME.
+     * JSON MIME examples:
+     *   application/json
+     *   application/json; charset=UTF8
+     *   APPLICATION/JSON
+     *   application/vnd.company+json
+     * @param mime - MIME (Multipurpose Internet Mail Extensions)
+     * @return True if the given MIME is JSON, false otherwise.
+     */
+    protected isJsonMime(mime: string | null | undefined): boolean {
+        if (!mime) {
+            return false;
+        }
+        return BaseAPI.jsonRegex.test(mime);
+    }
+
+    protected async request(context: RequestOpts, initOverrides?: RequestInit | InitOverrideFunction): Promise<Response> {
+        const { url, init } = await this.createFetchParams(context, initOverrides);
+        const response = await this.fetchApi(url, init);
+        if (response && (response.status >= 200 && response.status < 300)) {
+            return response;
+        }
+        throw new ResponseError(response, 'Response returned an error code');
+    }
+
+    private async createFetchParams(context: RequestOpts, initOverrides?: RequestInit | InitOverrideFunction) {
+        let url = this.configuration.basePath + context.path;
+        if (context.query !== undefined && Object.keys(context.query).length !== 0) {
+            // only add the querystring to the URL if there are query parameters.
+            // this is done to avoid urls ending with a "?" character which buggy webservers
+            // do not handle correctly sometimes.
+            url += '?' + this.configuration.queryParamsStringify(context.query);
+        }
+
+        const headers = Object.assign({}, this.configuration.headers, context.headers);
+        Object.keys(headers).forEach(key => headers[key] === undefined ? delete headers[key] : {});
+
+        const initOverrideFn =
+            typeof initOverrides === "function"
+                ? initOverrides
+                : async () => initOverrides;
+
+        const initParams = {
+            method: context.method,
+            headers,
+            body: context.body,
+            credentials: this.configuration.credentials,
+        };
+
+        const overriddenInit: RequestInit = {
+            ...initParams,
+            ...(await initOverrideFn({
+                init: initParams,
+                context,
+            }))
+        };
+
+        let body: any;
+        if (isFormData(overriddenInit.body)
+            || (overriddenInit.body instanceof URLSearchParams)
+            || isBlob(overriddenInit.body)) {
+          body = overriddenInit.body;
+        } else if (this.isJsonMime(headers['Content-Type'])) {
+          body = JSON.stringify(overriddenInit.body);
+        } else {
+          body = overriddenInit.body;
+        }
+
+        const init: RequestInit = {
+            ...overriddenInit,
+            body
+        };
+
+        return { url, init };
+    }
+
+    private fetchApi = async (url: string, init: RequestInit) => {
+        let fetchParams = { url, init };
+        for (const middleware of this.middleware) {
+            if (middleware.pre) {
+                fetchParams = await middleware.pre({
+                    fetch: this.fetchApi,
+                    ...fetchParams,
+                }) || fetchParams;
+            }
+        }
+        let response: Response | undefined = undefined;
+        try {
+            response = await (this.configuration.fetchApi || fetch)(fetchParams.url, fetchParams.init);
+        } catch (e) {
+            for (const middleware of this.middleware) {
+                if (middleware.onError) {
+                    response = await middleware.onError({
+                        fetch: this.fetchApi,
+                        url: fetchParams.url,
+                        init: fetchParams.init,
+                        error: e,
+                        response: response ? response.clone() : undefined,
+                    }) || response;
+                }
+            }
+            if (response === undefined) {
+              if (e instanceof Error) {
+                throw new FetchError(e, 'The request failed and the interceptors did not return an alternative response');
+              } else {
+                throw e;
+              }
+            }
+        }
+        for (const middleware of this.middleware) {
+            if (middleware.post) {
+                response = await middleware.post({
+                    fetch: this.fetchApi,
+                    url: fetchParams.url,
+                    init: fetchParams.init,
+                    response: response.clone(),
+                }) || response;
+            }
+        }
+        return response;
+    }
+
+    /**
+     * Create a shallow clone of `this` by constructing a new instance
+     * and then shallow cloning data members.
+     */
+    private clone<T extends BaseAPI>(this: T): T {
+        const constructor = this.constructor as any;
+        const next = new constructor(this.configuration);
+        next.middleware = this.middleware.slice();
+        return next;
+    }
+};
+
+function isBlob(value: any): value is Blob {
+    return typeof Blob !== 'undefined' && value instanceof Blob;
+}
+
+function isFormData(value: any): value is FormData {
+    return typeof FormData !== "undefined" && value instanceof FormData;
+}
+
+export class ResponseError extends Error {
+    override name: "ResponseError" = "ResponseError";
+    constructor(public response: Response, msg?: string) {
+        super(msg);
+    }
+}
+
+export class FetchError extends Error {
+    override name: "FetchError" = "FetchError";
+    constructor(public cause: Error, msg?: string) {
+        super(msg);
+    }
+}
+
+export class RequiredError extends Error {
+    override name: "RequiredError" = "RequiredError";
+    constructor(public field: string, msg?: string) {
+        super(msg);
+    }
+}
+
+export const COLLECTION_FORMATS = {
+    csv: ",",
+    ssv: " ",
+    tsv: "\t",
+    pipes: "|",
+};
+
+export type FetchAPI = WindowOrWorkerGlobalScope['fetch'];
+
+export type Json = any;
+export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'OPTIONS' | 'HEAD';
+export type HTTPHeaders = { [key: string]: string };
+export type HTTPQuery = { [key: string]: string | number | null | boolean | Array<string | number | null | boolean> | Set<string | number | null | boolean> | HTTPQuery };
+export type HTTPBody = Json | FormData | URLSearchParams;
+export type HTTPRequestInit = { headers?: HTTPHeaders; method: HTTPMethod; credentials?: RequestCredentials; body?: HTTPBody };
+export type ModelPropertyNaming = 'camelCase' | 'snake_case' | 'PascalCase' | 'original';
+
+export type InitOverrideFunction = (requestContext: { init: HTTPRequestInit, context: RequestOpts }) => Promise<RequestInit>
+
+export interface FetchParams {
+    url: string;
+    init: RequestInit;
+}
+
+export interface RequestOpts {
+    path: string;
+    method: HTTPMethod;
+    headers: HTTPHeaders;
+    query?: HTTPQuery;
+    body?: HTTPBody;
+}
+
+export function querystring(params: HTTPQuery, prefix: string = ''): string {
+    return Object.keys(params)
+        .map(key => querystringSingleKey(key, params[key], prefix))
+        .filter(part => part.length > 0)
+        .join('&');
+}
+
+function querystringSingleKey(key: string, value: string | number | null | undefined | boolean | Array<string | number | null | boolean> | Set<string | number | null | boolean> | HTTPQuery, keyPrefix: string = ''): string {
+    const fullKey = keyPrefix + (keyPrefix.length ? `[${key}]` : key);
+    if (value instanceof Array) {
+        const multiValue = value.map(singleValue => encodeURIComponent(String(singleValue)))
+            .join(`&${encodeURIComponent(fullKey)}=`);
+        return `${encodeURIComponent(fullKey)}=${multiValue}`;
+    }
+    if (value instanceof Set) {
+        const valueAsArray = Array.from(value);
+        return querystringSingleKey(key, valueAsArray, keyPrefix);
+    }
+    if (value instanceof Date) {
+        return `${encodeURIComponent(fullKey)}=${encodeURIComponent(value.toISOString())}`;
+    }
+    if (value instanceof Object) {
+        return querystring(value as HTTPQuery, fullKey);
+    }
+    return `${encodeURIComponent(fullKey)}=${encodeURIComponent(String(value))}`;
+}
+
+export function exists(json: any, key: string) {
+    const value = json[key];
+    return value !== null && value !== undefined;
+}
+
+export function mapValues(data: any, fn: (item: any) => any) {
+    const result: { [key: string]: any } = {};
+    for (const key of Object.keys(data)) {
+        result[key] = fn(data[key]);
+    }
+    return result;
+}
+
+export function canConsumeForm(consumes: Consume[]): boolean {
+    for (const consume of consumes) {
+        if ('multipart/form-data' === consume.contentType) {
+            return true;
+        }
+    }
+    return false;
+}
+
+export interface Consume {
+    contentType: string;
+}
+
+export interface RequestContext {
+    fetch: FetchAPI;
+    url: string;
+    init: RequestInit;
+}
+
+export interface ResponseContext {
+    fetch: FetchAPI;
+    url: string;
+    init: RequestInit;
+    response: Response;
+}
+
+export interface ErrorContext {
+    fetch: FetchAPI;
+    url: string;
+    init: RequestInit;
+    error: unknown;
+    response?: Response;
+}
+
+export interface Middleware {
+    pre?(context: RequestContext): Promise<FetchParams | void>;
+    post?(context: ResponseContext): Promise<Response | void>;
+    onError?(context: ErrorContext): Promise<Response | void>;
+}
+
+export interface ApiResponse<T> {
+    raw: Response;
+    value(): Promise<T>;
+}
+
+export interface ResponseTransformer<T> {
+    (json: any): T;
+}
+
+export class JSONApiResponse<T> {
+    constructor(public raw: Response, private transformer: ResponseTransformer<T> = (jsonValue: any) => jsonValue) {}
+
+    async value(): Promise<T> {
+        return this.transformer(await this.raw.json());
+    }
+}
+
+export class VoidApiResponse {
+    constructor(public raw: Response) {}
+
+    async value(): Promise<void> {
+        return undefined;
+    }
+}
+
+export class BlobApiResponse {
+    constructor(public raw: Response) {}
+
+    async value(): Promise<Blob> {
+        return await this.raw.blob();
+    };
+}
+
+export class TextApiResponse {
+    constructor(public raw: Response) {}
+
+    async value(): Promise<string> {
+        return await this.raw.text();
+    };
+}
+</file>
+
+<file path="src/api/.openapi-generator-ignore">
+# OpenAPI Generator Ignore
+# Generated by openapi-generator https://github.com/openapitools/openapi-generator
+
+# Use this file to prevent files from being overwritten by the generator.
+# The patterns follow closely to .gitignore or .dockerignore.
+
+# As an example, the C# client generator defines ApiClient.cs.
+# You can make changes and tell OpenAPI Generator to ignore just this file by uncommenting the following line:
+#ApiClient.cs
+
+# You can match any string of characters against a directory, file or extension with a single asterisk (*):
+#foo/*/qux
+# The above matches foo/bar/qux and foo/baz/qux, but not foo/bar/baz/qux
+
+# You can recursively match patterns against a directory, file or extension with a double asterisk (**):
+#foo/**/qux
+# This matches foo/bar/qux, foo/baz/qux, and foo/bar/baz/qux
+
+# You can also negate patterns with an exclamation (!).
+# For example, you can ignore all files in a docs folder with the file extension .md:
+#docs/*.md
+# Then explicitly reverse the ignore rule for a single file:
+#!docs/README.md
+</file>
+
+<file path="src/api/.openapi-generator/FILES">
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/AuthResponseDto.ts
+models/CoinDto.ts
+models/LoginRequestDto.ts
+models/SignupRequestDto.ts
+models/index.ts
+runtime.ts
+</file>
+
+<file path="src/api/.openapi-generator/VERSION">
+7.13.0
+</file>
+
+<file path="src/api/apis/DefaultApi.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+
+import * as runtime from '../runtime';
+import type {
+  AuthResponseDto,
+  CoinDto,
+  LoginRequestDto,
+  SignupRequestDto,
+} from '../models/index';
+import {
+    AuthResponseDtoFromJSON,
+    AuthResponseDtoToJSON,
+    CoinDtoFromJSON,
+    CoinDtoToJSON,
+    LoginRequestDtoFromJSON,
+    LoginRequestDtoToJSON,
+    SignupRequestDtoFromJSON,
+    SignupRequestDtoToJSON,
+} from '../models/index';
+
+export interface AuthLoginPostRequest {
+    loginRequestDto: LoginRequestDto;
+}
+
+export interface AuthSignupPostRequest {
+    signupRequestDto: SignupRequestDto;
+}
+
+export interface CoinIdGetRequest {
+    id: string;
+}
+
+/**
+ * 
+ */
+export class DefaultApi extends runtime.BaseAPI {
+
+    /**
+     * User login
+     */
+    async authLoginPostRaw(requestParameters: AuthLoginPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
+        if (requestParameters['loginRequestDto'] == null) {
+            throw new runtime.RequiredError(
+                'loginRequestDto',
+                'Required parameter "loginRequestDto" was null or undefined when calling authLoginPost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/auth/login`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: LoginRequestDtoToJSON(requestParameters['loginRequestDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthResponseDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * User login
+     */
+    async authLoginPost(requestParameters: AuthLoginPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
+        const response = await this.authLoginPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * User signup
+     */
+    async authSignupPostRaw(requestParameters: AuthSignupPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
+        if (requestParameters['signupRequestDto'] == null) {
+            throw new runtime.RequiredError(
+                'signupRequestDto',
+                'Required parameter "signupRequestDto" was null or undefined when calling authSignupPost().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/auth/signup`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SignupRequestDtoToJSON(requestParameters['signupRequestDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AuthResponseDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * User signup
+     */
+    async authSignupPost(requestParameters: AuthSignupPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
+        const response = await this.authSignupPostRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get list of all coins
+     */
+    async coinGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CoinDto>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/coin`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(CoinDtoFromJSON));
+    }
+
+    /**
+     * Get list of all coins
+     */
+    async coinGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CoinDto>> {
+        const response = await this.coinGetRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a specific coin by ID
+     */
+    async coinIdGetRaw(requestParameters: CoinIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinDto>> {
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling coinIdGet().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/coin/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CoinDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a specific coin by ID
+     */
+    async coinIdGet(requestParameters: CoinIdGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinDto> {
+        const response = await this.coinIdGetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+}
+</file>
+
+<file path="src/api/apis/index.ts">
+/* tslint:disable */
+/* eslint-disable */
+export * from './DefaultApi';
+</file>
+
+<file path="src/api/index.ts">
+/* tslint:disable */
+/* eslint-disable */
+export * from './runtime';
+export * from './apis/index';
+export * from './models/index';
+</file>
+
+<file path="src/api/models/AuthRequestDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth API
+ * API for user authentication
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface AuthRequestDto
+ */
+export interface AuthRequestDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthRequestDto
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthRequestDto
+     */
+    email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthRequestDto
+     */
+    password: string;
+}
+
+/**
+ * Check if a given object implements the AuthRequestDto interface.
+ */
+export function instanceOfAuthRequestDto(value: object): value is AuthRequestDto {
+    if (!('password' in value) || value['password'] === undefined) return false;
+    return true;
+}
+
+export function AuthRequestDtoFromJSON(json: any): AuthRequestDto {
+    return AuthRequestDtoFromJSONTyped(json, false);
+}
+
+export function AuthRequestDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthRequestDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'name': json['name'] == null ? undefined : json['name'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'password': json['password'],
+    };
+}
+
+export function AuthRequestDtoToJSON(json: any): AuthRequestDto {
+    return AuthRequestDtoToJSONTyped(json, false);
+}
+
+export function AuthRequestDtoToJSONTyped(value?: AuthRequestDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'name': value['name'],
+        'email': value['email'],
+        'password': value['password'],
+    };
+}
+</file>
+
+<file path="src/api/models/AuthResponseDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface AuthResponseDto
+ */
+export interface AuthResponseDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthResponseDto
+     */
+    token?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AuthResponseDto
+     */
+    userId?: string;
+    /**
+     * Token expiry time in seconds
+     * @type {number}
+     * @memberof AuthResponseDto
+     */
+    expiresIn?: number;
+}
+
+/**
+ * Check if a given object implements the AuthResponseDto interface.
+ */
+export function instanceOfAuthResponseDto(value: object): value is AuthResponseDto {
+    return true;
+}
+
+export function AuthResponseDtoFromJSON(json: any): AuthResponseDto {
+    return AuthResponseDtoFromJSONTyped(json, false);
+}
+
+export function AuthResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): AuthResponseDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'token': json['token'] == null ? undefined : json['token'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'expiresIn': json['expiresIn'] == null ? undefined : json['expiresIn'],
+    };
+}
+
+export function AuthResponseDtoToJSON(json: any): AuthResponseDto {
+    return AuthResponseDtoToJSONTyped(json, false);
+}
+
+export function AuthResponseDtoToJSONTyped(value?: AuthResponseDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'token': value['token'],
+        'userId': value['userId'],
+        'expiresIn': value['expiresIn'],
+    };
+}
+</file>
+
+<file path="src/api/models/CoinDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface CoinDto
+ */
+export interface CoinDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof CoinDto
+     */
+    id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoinDto
+     */
+    symbol?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoinDto
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CoinDto
+     */
+    image?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    currentPrice?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    marketCap?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    marketCapRank?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    fullyDilutedValuation?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    totalVolume?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    high24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    low24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    priceChange24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    priceChangePercentage24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    marketCapChange24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    marketCapChangePercentage24h?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    circulatingSupply?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    totalSupply?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    maxSupply?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    ath?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    athChangePercentage?: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CoinDto
+     */
+    athDate?: Date;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    atl?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CoinDto
+     */
+    atlChangePercentage?: number;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CoinDto
+     */
+    atlDate?: Date;
+    /**
+     * 
+     * @type {Date}
+     * @memberof CoinDto
+     */
+    lastUpdated?: Date;
+}
+
+/**
+ * Check if a given object implements the CoinDto interface.
+ */
+export function instanceOfCoinDto(value: object): value is CoinDto {
+    return true;
+}
+
+export function CoinDtoFromJSON(json: any): CoinDto {
+    return CoinDtoFromJSONTyped(json, false);
+}
+
+export function CoinDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CoinDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'id': json['id'] == null ? undefined : json['id'],
+        'symbol': json['symbol'] == null ? undefined : json['symbol'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'image': json['image'] == null ? undefined : json['image'],
+        'currentPrice': json['current_price'] == null ? undefined : json['current_price'],
+        'marketCap': json['market_cap'] == null ? undefined : json['market_cap'],
+        'marketCapRank': json['market_cap_rank'] == null ? undefined : json['market_cap_rank'],
+        'fullyDilutedValuation': json['fully_diluted_valuation'] == null ? undefined : json['fully_diluted_valuation'],
+        'totalVolume': json['total_volume'] == null ? undefined : json['total_volume'],
+        'high24h': json['high_24h'] == null ? undefined : json['high_24h'],
+        'low24h': json['low_24h'] == null ? undefined : json['low_24h'],
+        'priceChange24h': json['price_change_24h'] == null ? undefined : json['price_change_24h'],
+        'priceChangePercentage24h': json['price_change_percentage_24h'] == null ? undefined : json['price_change_percentage_24h'],
+        'marketCapChange24h': json['market_cap_change_24h'] == null ? undefined : json['market_cap_change_24h'],
+        'marketCapChangePercentage24h': json['market_cap_change_percentage_24h'] == null ? undefined : json['market_cap_change_percentage_24h'],
+        'circulatingSupply': json['circulating_supply'] == null ? undefined : json['circulating_supply'],
+        'totalSupply': json['total_supply'] == null ? undefined : json['total_supply'],
+        'maxSupply': json['max_supply'] == null ? undefined : json['max_supply'],
+        'ath': json['ath'] == null ? undefined : json['ath'],
+        'athChangePercentage': json['ath_change_percentage'] == null ? undefined : json['ath_change_percentage'],
+        'athDate': json['ath_date'] == null ? undefined : (new Date(json['ath_date'])),
+        'atl': json['atl'] == null ? undefined : json['atl'],
+        'atlChangePercentage': json['atl_change_percentage'] == null ? undefined : json['atl_change_percentage'],
+        'atlDate': json['atl_date'] == null ? undefined : (new Date(json['atl_date'])),
+        'lastUpdated': json['last_updated'] == null ? undefined : (new Date(json['last_updated'])),
+    };
+}
+
+export function CoinDtoToJSON(json: any): CoinDto {
+    return CoinDtoToJSONTyped(json, false);
+}
+
+export function CoinDtoToJSONTyped(value?: CoinDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'id': value['id'],
+        'symbol': value['symbol'],
+        'name': value['name'],
+        'image': value['image'],
+        'current_price': value['currentPrice'],
+        'market_cap': value['marketCap'],
+        'market_cap_rank': value['marketCapRank'],
+        'fully_diluted_valuation': value['fullyDilutedValuation'],
+        'total_volume': value['totalVolume'],
+        'high_24h': value['high24h'],
+        'low_24h': value['low24h'],
+        'price_change_24h': value['priceChange24h'],
+        'price_change_percentage_24h': value['priceChangePercentage24h'],
+        'market_cap_change_24h': value['marketCapChange24h'],
+        'market_cap_change_percentage_24h': value['marketCapChangePercentage24h'],
+        'circulating_supply': value['circulatingSupply'],
+        'total_supply': value['totalSupply'],
+        'max_supply': value['maxSupply'],
+        'ath': value['ath'],
+        'ath_change_percentage': value['athChangePercentage'],
+        'ath_date': value['athDate'] == null ? undefined : ((value['athDate']).toISOString()),
+        'atl': value['atl'],
+        'atl_change_percentage': value['atlChangePercentage'],
+        'atl_date': value['atlDate'] == null ? undefined : ((value['atlDate']).toISOString()),
+        'last_updated': value['lastUpdated'] == null ? undefined : ((value['lastUpdated']).toISOString()),
+    };
+}
+</file>
+
+<file path="src/api/models/index.ts">
+/* tslint:disable */
+/* eslint-disable */
+export * from './AuthResponseDto';
+export * from './CoinDto';
+export * from './LoginRequestDto';
+export * from './SignupRequestDto';
+</file>
+
+<file path="src/api/models/LoginRequestDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface LoginRequestDto
+ */
+export interface LoginRequestDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginRequestDto
+     */
+    email: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginRequestDto
+     */
+    password: string;
+}
+
+/**
+ * Check if a given object implements the LoginRequestDto interface.
+ */
+export function instanceOfLoginRequestDto(value: object): value is LoginRequestDto {
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    return true;
+}
+
+export function LoginRequestDtoFromJSON(json: any): LoginRequestDto {
+    return LoginRequestDtoFromJSONTyped(json, false);
+}
+
+export function LoginRequestDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): LoginRequestDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'email': json['email'],
+        'password': json['password'],
+    };
+}
+
+export function LoginRequestDtoToJSON(json: any): LoginRequestDto {
+    return LoginRequestDtoToJSONTyped(json, false);
+}
+
+export function LoginRequestDtoToJSONTyped(value?: LoginRequestDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'email': value['email'],
+        'password': value['password'],
+    };
+}
+</file>
+
+<file path="src/api/models/SignupRequestDto.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+import { mapValues } from '../runtime';
+/**
+ * 
+ * @export
+ * @interface SignupRequestDto
+ */
+export interface SignupRequestDto {
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequestDto
+     */
+    name: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequestDto
+     */
+    email: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof SignupRequestDto
+     */
+    password: string;
+}
+
+/**
+ * Check if a given object implements the SignupRequestDto interface.
+ */
+export function instanceOfSignupRequestDto(value: object): value is SignupRequestDto {
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('password' in value) || value['password'] === undefined) return false;
+    return true;
+}
+
+export function SignupRequestDtoFromJSON(json: any): SignupRequestDto {
+    return SignupRequestDtoFromJSONTyped(json, false);
+}
+
+export function SignupRequestDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): SignupRequestDto {
+    if (json == null) {
+        return json;
+    }
+    return {
+        
+        'name': json['name'],
+        'email': json['email'],
+        'password': json['password'],
+    };
+}
+
+export function SignupRequestDtoToJSON(json: any): SignupRequestDto {
+    return SignupRequestDtoToJSONTyped(json, false);
+}
+
+export function SignupRequestDtoToJSONTyped(value?: SignupRequestDto | null, ignoreDiscriminator: boolean = false): any {
+    if (value == null) {
+        return value;
+    }
+
+    return {
+        
+        'name': value['name'],
+        'email': value['email'],
+        'password': value['password'],
+    };
+}
+</file>
+
+<file path="src/api/runtime.ts">
+/* tslint:disable */
+/* eslint-disable */
+/**
+ * Auth & CoinInfo API
+ * API for authentication and coin data
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * 
+ *
+ * NOTE: This class is auto generated by OpenAPI Generator (https://openapi-generator.tech).
+ * https://openapi-generator.tech
+ * Do not edit the class manually.
+ */
+
+
+export const BASE_PATH = "http://localhost:3000/api".replace(/\/+$/, "");
+
+export interface ConfigurationParameters {
+    basePath?: string; // override base path
+    fetchApi?: FetchAPI; // override for fetch implementation
+    middleware?: Middleware[]; // middleware to apply before/after fetch requests
+    queryParamsStringify?: (params: HTTPQuery) => string; // stringify function for query strings
+    username?: string; // parameter for basic security
+    password?: string; // parameter for basic security
+    apiKey?: string | Promise<string> | ((name: string) => string | Promise<string>); // parameter for apiKey security
+    accessToken?: string | Promise<string> | ((name?: string, scopes?: string[]) => string | Promise<string>); // parameter for oauth2 security
+    headers?: HTTPHeaders; //header params we want to use on every request
+    credentials?: RequestCredentials; //value for the credentials param we want to use on each request
+}
+
+export class Configuration {
+    constructor(private configuration: ConfigurationParameters = {}) {}
+
+    set config(configuration: Configuration) {
+        this.configuration = configuration;
+    }
+
+    get basePath(): string {
+        return this.configuration.basePath != null ? this.configuration.basePath : BASE_PATH;
+    }
+
+    get fetchApi(): FetchAPI | undefined {
+        return this.configuration.fetchApi;
+    }
+
+    get middleware(): Middleware[] {
+        return this.configuration.middleware || [];
+    }
+
+    get queryParamsStringify(): (params: HTTPQuery) => string {
+        return this.configuration.queryParamsStringify || querystring;
+    }
+
+    get username(): string | undefined {
+        return this.configuration.username;
+    }
+
+    get password(): string | undefined {
+        return this.configuration.password;
+    }
+
+    get apiKey(): ((name: string) => string | Promise<string>) | undefined {
+        const apiKey = this.configuration.apiKey;
+        if (apiKey) {
+            return typeof apiKey === 'function' ? apiKey : () => apiKey;
+        }
+        return undefined;
+    }
+
+    get accessToken(): ((name?: string, scopes?: string[]) => string | Promise<string>) | undefined {
+        const accessToken = this.configuration.accessToken;
+        if (accessToken) {
+            return typeof accessToken === 'function' ? accessToken : async () => accessToken;
+        }
+        return undefined;
+    }
+
+    get headers(): HTTPHeaders | undefined {
+        return this.configuration.headers;
+    }
+
+    get credentials(): RequestCredentials | undefined {
+        return this.configuration.credentials;
+    }
+}
+
+export const DefaultConfig = new Configuration();
+
+/**
+ * This is the base class for all generated API classes.
+ */
+export class BaseAPI {
+
+    private static readonly jsonRegex = new RegExp('^(:?application\/json|[^;/ \t]+\/[^;/ \t]+[+]json)[ \t]*(:?;.*)?$', 'i');
+    private middleware: Middleware[];
+
+    constructor(protected configuration = DefaultConfig) {
+        this.middleware = configuration.middleware;
+    }
+
+    withMiddleware<T extends BaseAPI>(this: T, ...middlewares: Middleware[]) {
+        const next = this.clone<T>();
+        next.middleware = next.middleware.concat(...middlewares);
+        return next;
+    }
+
+    withPreMiddleware<T extends BaseAPI>(this: T, ...preMiddlewares: Array<Middleware['pre']>) {
+        const middlewares = preMiddlewares.map((pre) => ({ pre }));
+        return this.withMiddleware<T>(...middlewares);
+    }
+
+    withPostMiddleware<T extends BaseAPI>(this: T, ...postMiddlewares: Array<Middleware['post']>) {
+        const middlewares = postMiddlewares.map((post) => ({ post }));
+        return this.withMiddleware<T>(...middlewares);
+    }
+
+    /**
+     * Check if the given MIME is a JSON MIME.
+     * JSON MIME examples:
+     *   application/json
+     *   application/json; charset=UTF8
+     *   APPLICATION/JSON
+     *   application/vnd.company+json
+     * @param mime - MIME (Multipurpose Internet Mail Extensions)
+     * @return True if the given MIME is JSON, false otherwise.
+     */
+    protected isJsonMime(mime: string | null | undefined): boolean {
+        if (!mime) {
+            return false;
+        }
+        return BaseAPI.jsonRegex.test(mime);
+    }
+
+    protected async request(context: RequestOpts, initOverrides?: RequestInit | InitOverrideFunction): Promise<Response> {
+        const { url, init } = await this.createFetchParams(context, initOverrides);
+        const response = await this.fetchApi(url, init);
+        if (response && (response.status >= 200 && response.status < 300)) {
+            return response;
+        }
+        throw new ResponseError(response, 'Response returned an error code');
+    }
+
+    private async createFetchParams(context: RequestOpts, initOverrides?: RequestInit | InitOverrideFunction) {
+        let url = this.configuration.basePath + context.path;
+        if (context.query !== undefined && Object.keys(context.query).length !== 0) {
+            // only add the querystring to the URL if there are query parameters.
+            // this is done to avoid urls ending with a "?" character which buggy webservers
+            // do not handle correctly sometimes.
+            url += '?' + this.configuration.queryParamsStringify(context.query);
+        }
+
+        const headers = Object.assign({}, this.configuration.headers, context.headers);
+        Object.keys(headers).forEach(key => headers[key] === undefined ? delete headers[key] : {});
+
+        const initOverrideFn =
+            typeof initOverrides === "function"
+                ? initOverrides
+                : async () => initOverrides;
+
+        const initParams = {
+            method: context.method,
+            headers,
+            body: context.body,
+            credentials: this.configuration.credentials,
+        };
+
+        const overriddenInit: RequestInit = {
+            ...initParams,
+            ...(await initOverrideFn({
+                init: initParams,
+                context,
+            }))
+        };
+
+        let body: any;
+        if (isFormData(overriddenInit.body)
+            || (overriddenInit.body instanceof URLSearchParams)
+            || isBlob(overriddenInit.body)) {
+          body = overriddenInit.body;
+        } else if (this.isJsonMime(headers['Content-Type'])) {
+          body = JSON.stringify(overriddenInit.body);
+        } else {
+          body = overriddenInit.body;
+        }
+
+        const init: RequestInit = {
+            ...overriddenInit,
+            body
+        };
+
+        return { url, init };
+    }
+
+    private fetchApi = async (url: string, init: RequestInit) => {
+        let fetchParams = { url, init };
+        for (const middleware of this.middleware) {
+            if (middleware.pre) {
+                fetchParams = await middleware.pre({
+                    fetch: this.fetchApi,
+                    ...fetchParams,
+                }) || fetchParams;
+            }
+        }
+        let response: Response | undefined = undefined;
+        try {
+            response = await (this.configuration.fetchApi || fetch)(fetchParams.url, fetchParams.init);
+        } catch (e) {
+            for (const middleware of this.middleware) {
+                if (middleware.onError) {
+                    response = await middleware.onError({
+                        fetch: this.fetchApi,
+                        url: fetchParams.url,
+                        init: fetchParams.init,
+                        error: e,
+                        response: response ? response.clone() : undefined,
+                    }) || response;
+                }
+            }
+            if (response === undefined) {
+              if (e instanceof Error) {
+                throw new FetchError(e, 'The request failed and the interceptors did not return an alternative response');
+              } else {
+                throw e;
+              }
+            }
+        }
+        for (const middleware of this.middleware) {
+            if (middleware.post) {
+                response = await middleware.post({
+                    fetch: this.fetchApi,
+                    url: fetchParams.url,
+                    init: fetchParams.init,
+                    response: response.clone(),
+                }) || response;
+            }
+        }
+        return response;
+    }
+
+    /**
+     * Create a shallow clone of `this` by constructing a new instance
+     * and then shallow cloning data members.
+     */
+    private clone<T extends BaseAPI>(this: T): T {
+        const constructor = this.constructor as any;
+        const next = new constructor(this.configuration);
+        next.middleware = this.middleware.slice();
+        return next;
+    }
+};
+
+function isBlob(value: any): value is Blob {
+    return typeof Blob !== 'undefined' && value instanceof Blob;
+}
+
+function isFormData(value: any): value is FormData {
+    return typeof FormData !== "undefined" && value instanceof FormData;
+}
+
+export class ResponseError extends Error {
+    override name: "ResponseError" = "ResponseError";
+    constructor(public response: Response, msg?: string) {
+        super(msg);
+    }
+}
+
+export class FetchError extends Error {
+    override name: "FetchError" = "FetchError";
+    constructor(public cause: Error, msg?: string) {
+        super(msg);
+    }
+}
+
+export class RequiredError extends Error {
+    override name: "RequiredError" = "RequiredError";
+    constructor(public field: string, msg?: string) {
+        super(msg);
+    }
+}
+
+export const COLLECTION_FORMATS = {
+    csv: ",",
+    ssv: " ",
+    tsv: "\t",
+    pipes: "|",
+};
+
+export type FetchAPI = WindowOrWorkerGlobalScope['fetch'];
+
+export type Json = any;
+export type HTTPMethod = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'OPTIONS' | 'HEAD';
+export type HTTPHeaders = { [key: string]: string };
+export type HTTPQuery = { [key: string]: string | number | null | boolean | Array<string | number | null | boolean> | Set<string | number | null | boolean> | HTTPQuery };
+export type HTTPBody = Json | FormData | URLSearchParams;
+export type HTTPRequestInit = { headers?: HTTPHeaders; method: HTTPMethod; credentials?: RequestCredentials; body?: HTTPBody };
+export type ModelPropertyNaming = 'camelCase' | 'snake_case' | 'PascalCase' | 'original';
+
+export type InitOverrideFunction = (requestContext: { init: HTTPRequestInit, context: RequestOpts }) => Promise<RequestInit>
+
+export interface FetchParams {
+    url: string;
+    init: RequestInit;
+}
+
+export interface RequestOpts {
+    path: string;
+    method: HTTPMethod;
+    headers: HTTPHeaders;
+    query?: HTTPQuery;
+    body?: HTTPBody;
+}
+
+export function querystring(params: HTTPQuery, prefix: string = ''): string {
+    return Object.keys(params)
+        .map(key => querystringSingleKey(key, params[key], prefix))
+        .filter(part => part.length > 0)
+        .join('&');
+}
+
+function querystringSingleKey(key: string, value: string | number | null | undefined | boolean | Array<string | number | null | boolean> | Set<string | number | null | boolean> | HTTPQuery, keyPrefix: string = ''): string {
+    const fullKey = keyPrefix + (keyPrefix.length ? `[${key}]` : key);
+    if (value instanceof Array) {
+        const multiValue = value.map(singleValue => encodeURIComponent(String(singleValue)))
+            .join(`&${encodeURIComponent(fullKey)}=`);
+        return `${encodeURIComponent(fullKey)}=${multiValue}`;
+    }
+    if (value instanceof Set) {
+        const valueAsArray = Array.from(value);
+        return querystringSingleKey(key, valueAsArray, keyPrefix);
+    }
+    if (value instanceof Date) {
+        return `${encodeURIComponent(fullKey)}=${encodeURIComponent(value.toISOString())}`;
+    }
+    if (value instanceof Object) {
+        return querystring(value as HTTPQuery, fullKey);
+    }
+    return `${encodeURIComponent(fullKey)}=${encodeURIComponent(String(value))}`;
+}
+
+export function exists(json: any, key: string) {
+    const value = json[key];
+    return value !== null && value !== undefined;
+}
+
+export function mapValues(data: any, fn: (item: any) => any) {
+    const result: { [key: string]: any } = {};
+    for (const key of Object.keys(data)) {
+        result[key] = fn(data[key]);
+    }
+    return result;
+}
+
+export function canConsumeForm(consumes: Consume[]): boolean {
+    for (const consume of consumes) {
+        if ('multipart/form-data' === consume.contentType) {
+            return true;
+        }
+    }
+    return false;
+}
+
+export interface Consume {
+    contentType: string;
+}
+
+export interface RequestContext {
+    fetch: FetchAPI;
+    url: string;
+    init: RequestInit;
+}
+
+export interface ResponseContext {
+    fetch: FetchAPI;
+    url: string;
+    init: RequestInit;
+    response: Response;
+}
+
+export interface ErrorContext {
+    fetch: FetchAPI;
+    url: string;
+    init: RequestInit;
+    error: unknown;
+    response?: Response;
+}
+
+export interface Middleware {
+    pre?(context: RequestContext): Promise<FetchParams | void>;
+    post?(context: ResponseContext): Promise<Response | void>;
+    onError?(context: ErrorContext): Promise<Response | void>;
+}
+
+export interface ApiResponse<T> {
+    raw: Response;
+    value(): Promise<T>;
+}
+
+export interface ResponseTransformer<T> {
+    (json: any): T;
+}
+
+export class JSONApiResponse<T> {
+    constructor(public raw: Response, private transformer: ResponseTransformer<T> = (jsonValue: any) => jsonValue) {}
+
+    async value(): Promise<T> {
+        return this.transformer(await this.raw.json());
+    }
+}
+
+export class VoidApiResponse {
+    constructor(public raw: Response) {}
+
+    async value(): Promise<void> {
+        return undefined;
+    }
+}
+
+export class BlobApiResponse {
+    constructor(public raw: Response) {}
+
+    async value(): Promise<Blob> {
+        return await this.raw.blob();
+    };
+}
+
+export class TextApiResponse {
+    constructor(public raw: Response) {}
+
+    async value(): Promise<string> {
+        return await this.raw.text();
+    };
+}
+</file>
+
+<file path="src/App.css">
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.wallet-container {
+  background-color: #f0f2f5;
+  padding: 1rem;
+  margin: 1rem auto;
+  border-radius: 1rem;
+  max-width: 400px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-container input {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  width: 120px;
+}
+
+.wallet-container button {
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+</file>
+
+<file path="src/App.tsx">
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import InnerApp from "./InnerApp";
+
+function App () {
+    const queryClient = new QueryClient();
+
+    ReactDOM.createRoot(document.getElementById('root')!).render(
+        <React.StrictMode>
+            <QueryClientProvider client={queryClient}>
+                <InnerApp />
+            </QueryClientProvider>
+        </React.StrictMode>
+    );
+
+}
+
+export default App;
+</file>
+
+<file path="src/components/CoinInfo/CoinInfo.tsx">
+import React from 'react';
+import {CoinDto} from "../../api";
+interface Props {
+    coin: CoinDto;
+}
+export const CoinInfo: React.FunctionComponent<Props> = ({coin}) => {
+
+    return (
+        <div>
+            <h1>Coin Info</h1>
+            {coin.id}
+        </div>
+    );
+};
+</file>
+
+<file path="src/components/CoinInfo/CoinList.tsx">
+import React from 'react';
+import {CoinDto} from "../../api";
+import {useQuery} from "@tanstack/react-query";
+import {readCoinsQuery} from "../../queries/readCoins";
+
+export const CoinList: React.FunctionComponent = () => {
+
+    // const { data } = useQuery(readCoinsQuery);
+    const data = [
+        {
+            "id": "bitcoin",
+            "symbol": "btc",
+            "name": "Bitcoin",
+            "image": "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
+            "current_price": 108006,
+            "market_cap": 2145068574845,
+            "market_cap_rank": 1,
+            "fully_diluted_valuation": 2145068574845,
+            "total_volume": 32551364524,
+            "high_24h": 109057,
+            "low_24h": 107107,
+            "price_change_24h": -884.397998541783,
+            "price_change_percentage_24h": -0.81219,
+            "market_cap_change_24h": -19943985545.9941,
+            "market_cap_change_percentage_24h": -0.92119,
+            "circulating_supply": 19871393,
+            "total_supply": 19871393,
+            "max_supply": 21000000,
+            "ath": 111814,
+            "ath_change_percentage": -3.43322,
+            "ath_date": "2025-05-22T18:41:28.492Z",
+            "atl": 67.81,
+            "atl_change_percentage": 159134.52769,
+            "atl_date": "2013-07-06T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:47.008Z"
+        },
+        {
+            "id": "ethereum",
+            "symbol": "eth",
+            "name": "Ethereum",
+            "image": "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
+            "current_price": 2728.94,
+            "market_cap": 329434829734,
+            "market_cap_rank": 2,
+            "fully_diluted_valuation": 329434829734,
+            "total_volume": 26911260654,
+            "high_24h": 2771.24,
+            "low_24h": 2621.55,
+            "price_change_24h": 92.23,
+            "price_change_percentage_24h": 3.49781,
+            "market_cap_change_24h": 10906317759,
+            "market_cap_change_percentage_24h": 3.42397,
+            "circulating_supply": 120724829.450318,
+            "total_supply": 120724829.450318,
+            "max_supply": null,
+            "ath": 4878.26,
+            "ath_change_percentage": -44.05956,
+            "ath_date": "2021-11-10T14:24:19.604Z",
+            "atl": 0.432979,
+            "atl_change_percentage": 630166.44712,
+            "atl_date": "2015-10-20T00:00:00.000Z",
+            "roi": {
+                "times": 32.7202976538141,
+                "currency": "btc",
+                "percentage": 3272.02976538141
+            },
+            "last_updated": "2025-05-29T08:21:47.016Z"
+        },
+        {
+            "id": "tether",
+            "symbol": "usdt",
+            "name": "Tether",
+            "image": "https://coin-images.coingecko.com/coins/images/325/large/Tether.png?1696501661",
+            "current_price": 1,
+            "market_cap": 152947190843,
+            "market_cap_rank": 3,
+            "fully_diluted_valuation": 152947190843,
+            "total_volume": 59415517253,
+            "high_24h": 1,
+            "low_24h": 1,
+            "price_change_24h": -0.00014847957105113,
+            "price_change_percentage_24h": -0.01484,
+            "market_cap_change_24h": -18361683.5983276,
+            "market_cap_change_percentage_24h": -0.012,
+            "circulating_supply": 152913418919.933,
+            "total_supply": 152913418919.933,
+            "max_supply": null,
+            "ath": 1.32,
+            "ath_change_percentage": -24.40296,
+            "ath_date": "2018-07-24T00:00:00.000Z",
+            "atl": 0.572521,
+            "atl_change_percentage": 74.70466,
+            "atl_date": "2015-03-02T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:49.072Z"
+        },
+        {
+            "id": "ripple",
+            "symbol": "xrp",
+            "name": "XRP",
+            "image": "https://coin-images.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1696501442",
+            "current_price": 2.29,
+            "market_cap": 134031970379,
+            "market_cap_rank": 4,
+            "fully_diluted_valuation": 228356563399,
+            "total_volume": 2315682933,
+            "high_24h": 2.31,
+            "low_24h": 2.24,
+            "price_change_24h": -0.0103414781904139,
+            "price_change_percentage_24h": -0.45041,
+            "market_cap_change_24h": -675643260.573242,
+            "market_cap_change_percentage_24h": -0.50156,
+            "circulating_supply": 58686007292,
+            "total_supply": 99986107098,
+            "max_supply": 100000000000,
+            "ath": 3.4,
+            "ath_change_percentage": -32.77043,
+            "ath_date": "2018-01-07T00:00:00.000Z",
+            "atl": 0.00268621,
+            "atl_change_percentage": 84955.3806,
+            "atl_date": "2014-05-22T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:45.593Z"
+        },
+        {
+            "id": "binancecoin",
+            "symbol": "bnb",
+            "name": "BNB",
+            "image": "https://coin-images.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
+            "current_price": 686.03,
+            "market_cap": 100070120411,
+            "market_cap_rank": 5,
+            "fully_diluted_valuation": 100070120411,
+            "total_volume": 885736122,
+            "high_24h": 689.77,
+            "low_24h": 681.94,
+            "price_change_24h": 4.09,
+            "price_change_percentage_24h": 0.60038,
+            "market_cap_change_24h": 549855538,
+            "market_cap_change_percentage_24h": 0.55251,
+            "circulating_supply": 145887575.79,
+            "total_supply": 145887575.79,
+            "max_supply": 200000000,
+            "ath": 788.84,
+            "ath_change_percentage": -13.03465,
+            "ath_date": "2024-12-04T10:35:25.220Z",
+            "atl": 0.0398177,
+            "atl_change_percentage": 1722803.87725,
+            "atl_date": "2017-10-19T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:46.879Z"
+        },
+        {
+            "id": "solana",
+            "symbol": "sol",
+            "name": "Solana",
+            "image": "https://coin-images.coingecko.com/coins/images/4128/large/solana.png?1718769756",
+            "current_price": 172.53,
+            "market_cap": 89798170314,
+            "market_cap_rank": 6,
+            "fully_diluted_valuation": 103824342272,
+            "total_volume": 4171330086,
+            "high_24h": 174.93,
+            "low_24h": 169.58,
+            "price_change_24h": -1.59170241597792,
+            "price_change_percentage_24h": -0.91412,
+            "market_cap_change_24h": -915886293.189713,
+            "market_cap_change_percentage_24h": -1.00964,
+            "circulating_supply": 520523242.267644,
+            "total_supply": 601827220.719347,
+            "max_supply": null,
+            "ath": 293.31,
+            "ath_change_percentage": -41.17019,
+            "ath_date": "2025-01-19T11:15:27.957Z",
+            "atl": 0.500801,
+            "atl_change_percentage": 34355.76369,
+            "atl_date": "2020-05-11T19:35:23.449Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:46.288Z"
+        },
+        {
+            "id": "usd-coin",
+            "symbol": "usdc",
+            "name": "USDC",
+            "image": "https://coin-images.coingecko.com/coins/images/6319/large/usdc.png?1696506694",
+            "current_price": 0.999778,
+            "market_cap": 61222717361,
+            "market_cap_rank": 7,
+            "fully_diluted_valuation": 61235036923,
+            "total_volume": 9725650392,
+            "high_24h": 0.999821,
+            "low_24h": 0.999741,
+            "price_change_24h": -0.000002763495709601,
+            "price_change_percentage_24h": -0.00028,
+            "market_cap_change_24h": -116926836.390495,
+            "market_cap_change_percentage_24h": -0.19062,
+            "circulating_supply": 61235616317.1083,
+            "total_supply": 61247938474.1813,
+            "max_supply": null,
+            "ath": 1.17,
+            "ath_change_percentage": -14.74564,
+            "ath_date": "2019-05-08T00:40:28.300Z",
+            "atl": 0.877647,
+            "atl_change_percentage": 13.91636,
+            "atl_date": "2023-03-11T08:02:13.981Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:45.636Z"
+        },
+        {
+            "id": "dogecoin",
+            "symbol": "doge",
+            "name": "Dogecoin",
+            "image": "https://coin-images.coingecko.com/coins/images/5/large/dogecoin.png?1696501409",
+            "current_price": 0.22497,
+            "market_cap": 33559353504,
+            "market_cap_rank": 8,
+            "fully_diluted_valuation": 33562681531,
+            "total_volume": 1492978543,
+            "high_24h": 0.227584,
+            "low_24h": 0.217739,
+            "price_change_24h": 0.00212813,
+            "price_change_percentage_24h": 0.955,
+            "market_cap_change_24h": 236704808,
+            "market_cap_change_percentage_24h": 0.71034,
+            "circulating_supply": 149442786383.705,
+            "total_supply": 149457606383.705,
+            "max_supply": null,
+            "ath": 0.731578,
+            "ath_change_percentage": -69.26889,
+            "ath_date": "2021-05-08T05:08:23.458Z",
+            "atl": 0.0000869,
+            "atl_change_percentage": 258602.34041,
+            "atl_date": "2015-05-06T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:46.368Z"
+        },
+    ];
+
+    return (
+        <div>
+            <h1>Coin List</h1>
+            <ul>
+                {data?.map((coin: CoinDto) => (
+                    <li key={coin.id}>
+                        <strong>{coin.name}</strong>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+</file>
+
+<file path="src/components/Dashboard.tsx">
+import React from 'react';
+import {PortfolioInfo} from "./PortfolioInfo";
+import {CoinList} from "./CoinInfo/CoinList";
+import {WalletInfo} from "./WalletInfo";
+
+export const Dashboard: React.FunctionComponent = () => {
+
+    return (
+        <div>
+            <WalletInfo/>
+            <PortfolioInfo/>
+            <CoinList/>
+        </div>
+    );
+};
+</file>
+
+<file path="src/components/PortfolioInfo.tsx">
+import React from 'react';
+
+export const PortfolioInfo: React.FunctionComponent = () => {
+
+    return (
+        <div>
+            <h1>Mein Portfolio</h1>
+        </div>
+    );
+};
+</file>
+
+<file path="src/components/WalletInfo.tsx">
+import React, { useEffect, useState } from 'react';
+
+const WalletInfo = () => {
+  const [balance, setBalance] = useState(0);
+  const [amount, setAmount] = useState(0);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/wallet')
+      .then((res) => res.json())
+      .then((data) => setBalance(data.balance))
+      .catch((err) => console.error('Fehler beim Laden der Balance:', err));
+  }, []);
+
+  const handleDeposit = () => {
+    fetch('http://localhost:3000/api/wallet/deposit', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setBalance(data.balance);
+        setAmount(0);
+      });
+  };
+
+  const handleWithdraw = () => {
+    fetch('http://localhost:3000/api/wallet/withdraw', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setBalance(data.balance);
+        setAmount(0);
+      });
+  };
+
+  return (
+    <div className="wallet-container">
+      <h2>Wallet</h2>
+      <p><strong>Aktuelle Balance:</strong> {balance} €</p>
+
+      <input
+        type="number"
+        value={amount}
+        onChange={(e) => setAmount(Number(e.target.value))}
+        placeholder="Betrag (€)"
+      />
+      <button onClick={handleDeposit}>Geld hinzufügen</button>
+      <button onClick={handleWithdraw}>Auszahlen</button>
+    </div>
+  );
+};
+
+export default WalletInfo;
+</file>
+
+<file path="src/enums/QueryKeyEnum.ts">
+export enum QueryKeyEnum {
+    coins = 'coins',
+    user = 'user',
+}
+</file>
+
+<file path="src/form/SignupForm.tsx">
+import { useState } from 'react';
+import {useCreateUser} from "../mutation/useCreateUser";
+
+export const SignupForm = () => {
+    const [name, setName] = useState('');
+    const [mail, setMail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const mutation = useCreateUser();
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        mutation.mutate({
+            name,
+            mail,
+            password
+        });
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
+            <input value={mail} onChange={(e) => setMail(e.target.value)} placeholder="E-Mail" />
+            <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Passwort" />
+            <button type="submit" disabled={mutation.isPending}>Signup</button>
+            {mutation.isError && <p>Fehler: {(mutation.error as Error).message}</p>}
+            {mutation.isSuccess && <p>Signup erfolgreich!</p>}
+        </form>
+    );
+};
+</file>
+
+<file path="src/index.css">
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+</file>
+
+<file path="src/index.js">
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+</file>
+
+<file path="src/InnerApp.tsx">
+import React, {useEffect, useState} from "react";
+import {SignupForm} from "./form/SignupForm";
+import {CoinList} from "./components/CoinInfo/CoinList";
+import {Dashboard} from "./components/Dashboard";
+
+function InnerApp() {
+    // const [token, setToken] = useState<string | null>(null);
+    //
+    // useEffect(() => {
+    //     const storedToken = localStorage.getItem('token');
+    //     setToken(storedToken);
+    // }, []);
+    //
+    // if (!token) {
+    //     return (
+    //         <div>
+    //             <h2>Bitte einloggen</h2>
+    //             <SignupForm/>
+    //         </div>
+    //     );
+    // }
+
+    return (
+        <div>
+            <Dashboard/>
+        </div>
+    );
+}
+
+
+export default InnerApp;
+</file>
+
+<file path="src/mutation/useCreateUser.ts">
+import { useMutation } from '@tanstack/react-query';
+import { Configuration, DefaultApi, SignupRequestDto } from '../api-client';
+
+const api = new DefaultApi(new Configuration({ basePath: 'http://localhost:5456/api' }));
+
+export const useCreateUser = () => {
+    return useMutation({
+        mutationFn: (data: SignupRequestDto) => api.createUser({ signupRequestDto: data }),
+    });
+};
+</file>
+
+<file path="src/queries/readCoins.ts">
+import { queryOptions } from '@tanstack/react-query';
+import { QueryKeyEnum } from '../enums/QueryKeyEnum';
+import { DefaultApi, Configuration } from '../api-client';
+const api = new DefaultApi(new Configuration({ basePath: 'http://localhost:5456/api' }));
+
+export const readCoinsQuery = queryOptions({
+    queryKey: [QueryKeyEnum.coins],
+    queryFn: () => api.readCoins(),
+    placeholderData: () => [
+        {
+            "id": "ethereum",
+            "symbol": "eth",
+            "name": "Ethereum",
+            "image": "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
+            "current_price": 2728.94,
+            "market_cap": 329434829734,
+            "market_cap_rank": 2,
+            "fully_diluted_valuation": 329434829734,
+            "total_volume": 26911260654,
+            "high_24h": 2771.24,
+            "low_24h": 2621.55,
+            "price_change_24h": 92.23,
+            "price_change_percentage_24h": 3.49781,
+            "market_cap_change_24h": 10906317759,
+            "market_cap_change_percentage_24h": 3.42397,
+            "circulating_supply": 120724829.450318,
+            "total_supply": 120724829.450318,
+            "max_supply": null,
+            "ath": 4878.26,
+            "ath_change_percentage": -44.05956,
+            "ath_date": "2021-11-10T14:24:19.604Z",
+            "atl": 0.432979,
+            "atl_change_percentage": 630166.44712,
+            "atl_date": "2015-10-20T00:00:00.000Z",
+            "roi": {
+                "times": 32.7202976538141,
+                "currency": "btc",
+                "percentage": 3272.02976538141
+            },
+            "last_updated": "2025-05-29T08:21:47.016Z"
+        },
+        {
+            "id": "tether",
+            "symbol": "usdt",
+            "name": "Tether",
+            "image": "https://coin-images.coingecko.com/coins/images/325/large/Tether.png?1696501661",
+            "current_price": 1,
+            "market_cap": 152947190843,
+            "market_cap_rank": 3,
+            "fully_diluted_valuation": 152947190843,
+            "total_volume": 59415517253,
+            "high_24h": 1,
+            "low_24h": 1,
+            "price_change_24h": -0.00014847957105113,
+            "price_change_percentage_24h": -0.01484,
+            "market_cap_change_24h": -18361683.5983276,
+            "market_cap_change_percentage_24h": -0.012,
+            "circulating_supply": 152913418919.933,
+            "total_supply": 152913418919.933,
+            "max_supply": null,
+            "ath": 1.32,
+            "ath_change_percentage": -24.40296,
+            "ath_date": "2018-07-24T00:00:00.000Z",
+            "atl": 0.572521,
+            "atl_change_percentage": 74.70466,
+            "atl_date": "2015-03-02T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:49.072Z"
+        },
+        {
+            "id": "ripple",
+            "symbol": "xrp",
+            "name": "XRP",
+            "image": "https://coin-images.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1696501442",
+            "current_price": 2.29,
+            "market_cap": 134031970379,
+            "market_cap_rank": 4,
+            "fully_diluted_valuation": 228356563399,
+            "total_volume": 2315682933,
+            "high_24h": 2.31,
+            "low_24h": 2.24,
+            "price_change_24h": -0.0103414781904139,
+            "price_change_percentage_24h": -0.45041,
+            "market_cap_change_24h": -675643260.573242,
+            "market_cap_change_percentage_24h": -0.50156,
+            "circulating_supply": 58686007292,
+            "total_supply": 99986107098,
+            "max_supply": 100000000000,
+            "ath": 3.4,
+            "ath_change_percentage": -32.77043,
+            "ath_date": "2018-01-07T00:00:00.000Z",
+            "atl": 0.00268621,
+            "atl_change_percentage": 84955.3806,
+            "atl_date": "2014-05-22T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:45.593Z"
+        },
+        {
+            "id": "binancecoin",
+            "symbol": "bnb",
+            "name": "BNB",
+            "image": "https://coin-images.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
+            "current_price": 686.03,
+            "market_cap": 100070120411,
+            "market_cap_rank": 5,
+            "fully_diluted_valuation": 100070120411,
+            "total_volume": 885736122,
+            "high_24h": 689.77,
+            "low_24h": 681.94,
+            "price_change_24h": 4.09,
+            "price_change_percentage_24h": 0.60038,
+            "market_cap_change_24h": 549855538,
+            "market_cap_change_percentage_24h": 0.55251,
+            "circulating_supply": 145887575.79,
+            "total_supply": 145887575.79,
+            "max_supply": 200000000,
+            "ath": 788.84,
+            "ath_change_percentage": -13.03465,
+            "ath_date": "2024-12-04T10:35:25.220Z",
+            "atl": 0.0398177,
+            "atl_change_percentage": 1722803.87725,
+            "atl_date": "2017-10-19T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:46.879Z"
+        },
+        {
+            "id": "solana",
+            "symbol": "sol",
+            "name": "Solana",
+            "image": "https://coin-images.coingecko.com/coins/images/4128/large/solana.png?1718769756",
+            "current_price": 172.53,
+            "market_cap": 89798170314,
+            "market_cap_rank": 6,
+            "fully_diluted_valuation": 103824342272,
+            "total_volume": 4171330086,
+            "high_24h": 174.93,
+            "low_24h": 169.58,
+            "price_change_24h": -1.59170241597792,
+            "price_change_percentage_24h": -0.91412,
+            "market_cap_change_24h": -915886293.189713,
+            "market_cap_change_percentage_24h": -1.00964,
+            "circulating_supply": 520523242.267644,
+            "total_supply": 601827220.719347,
+            "max_supply": null,
+            "ath": 293.31,
+            "ath_change_percentage": -41.17019,
+            "ath_date": "2025-01-19T11:15:27.957Z",
+            "atl": 0.500801,
+            "atl_change_percentage": 34355.76369,
+            "atl_date": "2020-05-11T19:35:23.449Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:46.288Z"
+        },
+        {
+            "id": "usd-coin",
+            "symbol": "usdc",
+            "name": "USDC",
+            "image": "https://coin-images.coingecko.com/coins/images/6319/large/usdc.png?1696506694",
+            "current_price": 0.999778,
+            "market_cap": 61222717361,
+            "market_cap_rank": 7,
+            "fully_diluted_valuation": 61235036923,
+            "total_volume": 9725650392,
+            "high_24h": 0.999821,
+            "low_24h": 0.999741,
+            "price_change_24h": -0.000002763495709601,
+            "price_change_percentage_24h": -0.00028,
+            "market_cap_change_24h": -116926836.390495,
+            "market_cap_change_percentage_24h": -0.19062,
+            "circulating_supply": 61235616317.1083,
+            "total_supply": 61247938474.1813,
+            "max_supply": null,
+            "ath": 1.17,
+            "ath_change_percentage": -14.74564,
+            "ath_date": "2019-05-08T00:40:28.300Z",
+            "atl": 0.877647,
+            "atl_change_percentage": 13.91636,
+            "atl_date": "2023-03-11T08:02:13.981Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:45.636Z"
+        },
+        {
+            "id": "dogecoin",
+            "symbol": "doge",
+            "name": "Dogecoin",
+            "image": "https://coin-images.coingecko.com/coins/images/5/large/dogecoin.png?1696501409",
+            "current_price": 0.22497,
+            "market_cap": 33559353504,
+            "market_cap_rank": 8,
+            "fully_diluted_valuation": 33562681531,
+            "total_volume": 1492978543,
+            "high_24h": 0.227584,
+            "low_24h": 0.217739,
+            "price_change_24h": 0.00212813,
+            "price_change_percentage_24h": 0.955,
+            "market_cap_change_24h": 236704808,
+            "market_cap_change_percentage_24h": 0.71034,
+            "circulating_supply": 149442786383.705,
+            "total_supply": 149457606383.705,
+            "max_supply": null,
+            "ath": 0.731578,
+            "ath_change_percentage": -69.26889,
+            "ath_date": "2021-05-08T05:08:23.458Z",
+            "atl": 0.0000869,
+            "atl_change_percentage": 258602.34041,
+            "atl_date": "2015-05-06T00:00:00.000Z",
+            "roi": null,
+            "last_updated": "2025-05-29T08:21:46.368Z"
+        },
+    ]
+
+});
+</file>
+
+<file path="src/reportWebVitals.js">
+const reportWebVitals = onPerfEntry => {
+  if (onPerfEntry && onPerfEntry instanceof Function) {
+    import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+      getCLS(onPerfEntry);
+      getFID(onPerfEntry);
+      getFCP(onPerfEntry);
+      getLCP(onPerfEntry);
+      getTTFB(onPerfEntry);
+    });
+  }
+};
+
+export default reportWebVitals;
+</file>
+
+<file path="src/setupTests.js">
+// jest-dom adds custom jest matchers for asserting on DOM nodes.
+// allows you to do things like:
+// expect(element).toHaveTextContent(/react/i)
+// learn more: https://github.com/testing-library/jest-dom
+import '@testing-library/jest-dom';
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  },
+  "include": ["src"]
+}
+</file>
+
+</files>

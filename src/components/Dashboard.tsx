@@ -1,15 +1,14 @@
 import React from 'react';
-import {PortfolioInfo} from "./PortfolioInfo";
-import {CoinList} from "./CoinInfo/CoinList";
-import {WalletInfo} from "./WalletInfo";
+import WalletInfo from './WalletInfo';  // Default Import
+import { PortfolioInfo } from './PortfolioInfo';
+import { CoinList } from './CoinInfo/CoinList';
 
-export const Dashboard: React.FunctionComponent = () => {
-
-    return (
-        <div>
-            <WalletInfo/>
-            <PortfolioInfo/>
-            <CoinList/>
-        </div>
-    );
+export const Dashboard: React.FC = () => {
+  return (
+    <div>
+      <WalletInfo />
+      <PortfolioInfo />
+      <CoinList />
+    </div>
+  );
 };

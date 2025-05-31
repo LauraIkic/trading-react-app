@@ -24,7 +24,7 @@ export interface LoginRequestDto {
      * @type {string}
      * @memberof LoginRequestDto
      */
-    email: string;
+    mail: string;
     /**
      * 
      * @type {string}
@@ -37,7 +37,7 @@ export interface LoginRequestDto {
  * Check if a given object implements the LoginRequestDto interface.
  */
 export function instanceOfLoginRequestDto(value: object): value is LoginRequestDto {
-    if (!('email' in value) || value['email'] === undefined) return false;
+    if (!('mail' in value) || value['mail'] === undefined) return false;
     if (!('password' in value) || value['password'] === undefined) return false;
     return true;
 }
@@ -52,7 +52,7 @@ export function LoginRequestDtoFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'email': json['email'],
+        'mail': json['mail'],
         'password': json['password'],
     };
 }
@@ -68,7 +68,7 @@ export function LoginRequestDtoToJSONTyped(value?: LoginRequestDto | null, ignor
 
     return {
         
-        'email': value['email'],
+        'mail': value['mail'],
         'password': value['password'],
     };
 }
