@@ -1,0 +1,222 @@
+/* Container und Überschrift */
+.coin-list-container {
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+.coin-list-container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Standard Tabelle */
+.coin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.coin-table thead {
+  background: #fafafa;
+}
+
+.coin-table th,
+.coin-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.coin-table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid #ddd;
+}
+
+/* Crypt Style Tabelle */
+.crypt-style-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.crypt-style-table thead th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: #555;
+  padding: 0.75rem 1rem;
+}
+
+.crypt-style-table tbody td {
+  background: #fff;
+  padding: 0.75rem 1rem;
+}
+
+.crypt-style-table tr:hover td {
+  background: #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+/* Asset Cell (Name + Logo) */
+.coin-cell-name {
+  display: flex;
+  align-items: center;
+}
+
+.asset-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.coin-logo {
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.coin-details .coin-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.coin-details .coin-symbol {
+  font-size: 0.75rem;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.coin-name {
+  font-weight: 500;
+  color: #333;
+}
+
+.coin-symbol {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+/* Price Changes */
+.positive {
+  color: #1a8917;
+}
+
+.negative {
+  color: #c92a2a;
+}
+
+/* Order Button für Tabelle */
+.order-btn {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  min-width: 70px;
+}
+
+.order-btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+.order-btn:active {
+  transform: translateY(0);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+  .coin-list-container {
+    padding: 1rem;
+  }
+  
+  .crypt-style-table th,
+  .crypt-style-table td {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .coin-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.25rem;
+  }
+  
+  .coin-details .coin-name {
+    font-size: 0.875rem;
+  }
+  
+  .coin-details .coin-symbol {
+    font-size: 0.7rem;
+  }
+  
+  .order-btn {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+    min-width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hide Market Cap column on very small screens */
+  .crypt-style-table th:nth-child(3),
+  .crypt-style-table td:nth-child(3) {
+    display: none;
+  }
+  
+  .coin-list-container {
+    padding: 0.5rem;
+  }
+  
+  .crypt-style-table th,
+  .crypt-style-table td {
+    padding: 0.375rem 0.5rem;
+  }
+}
+
+/* ========== LOADING & ERROR STATES ========== */
+.loading-row {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-style: italic;
+}
+
+.error-row {
+  text-align: center;
+  padding: 2rem;
+  color: #dc3545;
+  background-color: rgba(220, 53, 69, 0.1);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #666;
+}
+
+.empty-state h3 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 0.875rem;
+}

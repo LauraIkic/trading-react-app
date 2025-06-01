@@ -5,11 +5,11 @@ import {useAuthStore} from "../stores/useAuthenticationStore";
 
 const api = new DefaultApi(new Configuration({ basePath: 'http://localhost:5456' }));
 
-export const readCoinsQuery = queryOptions({
-    queryKey: [QueryKeyEnum.coins],
+export const readPortfolioQuery = queryOptions({
+    queryKey: [QueryKeyEnum.portfolio],
     queryFn: () => {
         const token = useAuthStore.getState().token;
-        return api.readCoins( {
+        return api.readPortfolio( {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
