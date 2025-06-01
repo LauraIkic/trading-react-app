@@ -24,14 +24,25 @@ export interface WalletRequestDto {
      * @type {string}
      * @memberof WalletRequestDto
      */
-    id?: string;
+    amount?: string;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof WalletRequestDto
      */
-    balance?: number;
+    type?: WalletRequestDtoTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const WalletRequestDtoTypeEnum = {
+    Deposit: 'DEPOSIT',
+    Withdraw: 'WITHDRAW'
+} as const;
+export type WalletRequestDtoTypeEnum = typeof WalletRequestDtoTypeEnum[keyof typeof WalletRequestDtoTypeEnum];
+
 
 /**
  * Check if a given object implements the WalletRequestDto interface.
@@ -50,8 +61,8 @@ export function WalletRequestDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'balance': json['balance'] == null ? undefined : json['balance'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'type': json['type'] == null ? undefined : json['type'],
     };
 }
 
@@ -66,8 +77,8 @@ export function WalletRequestDtoToJSONTyped(value?: WalletRequestDto | null, ign
 
     return {
         
-        'id': value['id'],
-        'balance': value['balance'],
+        'amount': value['amount'],
+        'type': value['type'],
     };
 }
 

@@ -7,155 +7,13 @@ info:
 servers:
   - url: http://localhost:5456/api
 
-paths:
-  /auth/login:
-    post:
-      summary: User login
-      operationId: loginUser
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LoginRequestDto'
-      responses:
-        '200':
-          description: Successful login
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthResponseDto'
-        '401':
-          description: Unauthorized
-
-  /auth/signup:
-    post:
-      summary: User signup
-      operationId: createUser
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/SignupRequestDto'
-      responses:
-        '201':
-          description: Successful signup
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthResponseDto'
-        '400':
-          description: Bad request
-
-  /coin:
-    get:
-      summary: Get list of all coins
-      operationId: readCoins
-      responses:
-        '200':
-          description: A list of coins
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CoinDto'
-
-  /coin/{id}:
-    get:
-      summary: Get a specific coin by ID
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: A single coin
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CoinDto'
-        '404':
-          description: CoinInfo not found
-  /wallet:
-    get:
-      summary: Get wallet balance
-      responses:
-        '200':
-          description: Get wallet balance
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WalletRequestDto'
-  /order:
-    post:
-      summary: Create a new order
-      operationId: createOrder
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrderCreateDto'
-      responses:
-        '200':
-          description: Order created successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/OrderDto'
-        '400':
-          description: Bad request
-  /portfolio:
-    get:
-      summary: Get user portfolio
-      operationId: readPortfolio
-      responses:
-        '200':
-          description: User portfolio
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PortfolioDto'
-        '401':
-          description: Unauthorized
-
-  /portfolio/items:
-    get:
-      summary: Get portfolio items
-      operationId: getPortfolioItems
-      responses:
-        '200':
-          description: List of portfolio items
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PortfolioItemDto'
-        '401':
-          description: Unauthorized
-
-  /orders:
-    get:
-      summary: Get user orders
-      operationId: getMyOrders
-      responses:
-        '200':
-          description: List of user orders
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OrderDto'
-        '401':
-          description: Unauthorized
-
 components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
   schemas:
     LoginRequestDto:
       type: object
@@ -189,13 +47,16 @@ components:
     AuthResponseDto:
       type: object
       properties:
-        token:
+        jwt:
           type: string
-        userId:
+        status:
+          type: boolean
+        message:
           type: string
-        expiresIn:
-          type: integer
-          description: Token expiry time in seconds
+        isTwoFactorAuthEnabled:
+          type: boolean
+        session:
+          nullable: true
 
     CoinDto:
       type: object
@@ -257,10 +118,19 @@ components:
     WalletRequestDto:
       type: object
       properties:
+        amount:
+          type: string
+        type:
+          enum: [DEPOSIT, WITHDRAW]
+
+    WalletResponseDto:
+      type: object
+      properties:
         id:
           type: string
         balance:
           type: number
+
     OrderCreateDto:
       type: object
       required:
@@ -275,7 +145,7 @@ components:
         type:
           type: string
           enum: [BUY, SELL]
-    
+
     OrderDto:
       type: object
       properties:
@@ -327,3 +197,189 @@ components:
           type: number
         currentPrice:
           type: number
+
+security: []  # Default no security globally (can be overridden per-path)
+
+paths:
+  /auth/login:
+    post:
+      summary: User login
+      operationId: loginUser
+      security: []   # Public route, no auth required
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequestDto'
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '401':
+          description: Unauthorized
+
+  /auth/signup:
+    post:
+      summary: User signup
+      operationId: createUser
+      security: []  # Public route, no auth required
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequestDto'
+      responses:
+        '201':
+          description: Successful signup
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponseDto'
+        '400':
+          description: Bad request
+
+  /api/coin:
+    get:
+      summary: Get list of all coins
+      operationId: readCoins
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: A list of coins
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CoinDto'
+
+  /coin/{id}:
+    get:
+      summary: Get a specific coin by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single coin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoinDto'
+        '404':
+          description: CoinInfo not found
+
+  /api/wallet:
+    get:
+      summary: Get wallet balance
+      operationId: readWallet
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: Get wallet balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletResponseDto'
+    patch:
+      summary: Add or withdraw money to/from wallet
+      operationId: patchWallet
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletRequestDto'
+      responses:
+        '200':
+          description: Get wallet balance
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletResponseDto'
+
+  /api/order:
+    post:
+      summary: Create a new order
+      operationId: createOrder
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderCreateDto'
+      responses:
+        '200':
+          description: Order created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderDto'
+        '400':
+          description: Bad request
+
+  /api/portfolio:
+    get:
+      summary: Get user portfolio
+      operationId: readPortfolio
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: User portfolio
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PortfolioDto'
+        '401':
+          description: Unauthorized
+
+  /api/portfolio/items:
+    get:
+      summary: Get portfolio items
+      operationId: getPortfolioItems
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of portfolio items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PortfolioItemDto'
+        '401':
+          description: Unauthorized
+
+  /api/orders:
+    get:
+      summary: Get user orders
+      operationId: getMyOrders
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: List of user orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrderDto'
+        '401':
+          description: Unauthorized

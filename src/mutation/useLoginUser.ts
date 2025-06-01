@@ -10,7 +10,8 @@ export const useLogin = () => {
     return useMutation({
         mutationFn: (data: LoginRequestDto) => api.loginUser({ loginRequestDto: data }),
         onSuccess: (res) => {
-            setAuth(res.userId!, res.token!);
+            console.log(res)
+            setAuth('login', res.jwt!);
         },
     });
 };

@@ -48,14 +48,53 @@ export interface OrderDto {
      * @type {string}
      * @memberof OrderDto
      */
-    type?: string;
+    type?: OrderDtoTypeEnum;
     /**
      * 
      * @type {string}
      * @memberof OrderDto
      */
-    status?: string;
+    status?: OrderDtoStatusEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderDto
+     */
+    userId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderDto
+     */
+    referenceId?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderDto
+     */
+    version?: number;
 }
+
+
+/**
+ * @export
+ */
+export const OrderDtoTypeEnum = {
+    Buy: 'BUY',
+    Sell: 'SELL'
+} as const;
+export type OrderDtoTypeEnum = typeof OrderDtoTypeEnum[keyof typeof OrderDtoTypeEnum];
+
+/**
+ * @export
+ */
+export const OrderDtoStatusEnum = {
+    Open: 'OPEN',
+    Executed: 'EXECUTED',
+    Cancelled: 'CANCELLED'
+} as const;
+export type OrderDtoStatusEnum = typeof OrderDtoStatusEnum[keyof typeof OrderDtoStatusEnum];
+
 
 /**
  * Check if a given object implements the OrderDto interface.
@@ -80,6 +119,9 @@ export function OrderDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'price': json['price'] == null ? undefined : json['price'],
         'type': json['type'] == null ? undefined : json['type'],
         'status': json['status'] == null ? undefined : json['status'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'referenceId': json['referenceId'] == null ? undefined : json['referenceId'],
+        'version': json['version'] == null ? undefined : json['version'],
     };
 }
 
@@ -100,6 +142,9 @@ export function OrderDtoToJSONTyped(value?: OrderDto | null, ignoreDiscriminator
         'price': value['price'],
         'type': value['type'],
         'status': value['status'],
+        'userId': value['userId'],
+        'referenceId': value['referenceId'],
+        'version': value['version'],
     };
 }
 

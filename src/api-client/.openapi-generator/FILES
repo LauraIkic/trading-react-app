@@ -6,7 +6,10 @@ models/CoinDto.ts
 models/LoginRequestDto.ts
 models/OrderCreateDto.ts
 models/OrderDto.ts
+models/PortfolioDto.ts
+models/PortfolioItemDto.ts
 models/SignupRequestDto.ts
 models/WalletRequestDto.ts
+models/WalletResponseDto.ts
 models/index.ts
 runtime.ts

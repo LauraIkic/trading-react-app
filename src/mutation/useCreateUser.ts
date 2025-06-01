@@ -8,9 +8,10 @@ export const useCreateUser = () => {
     const setAuth = useAuthStore((state) => state.login);
 
     return useMutation({
-        mutationFn: (data: SignupRequestDto) => api.createUser({ signupRequestDto: data }),
-        onSuccess: (res) => {
-            setAuth(res.userId!, res.token!);
-        },
+        mutationFn: (data: SignupRequestDto) => api.createUser({ signupRequestDto: data })
+            .then((response) => {
+                console.log(response)
+                setAuth('id', response.jwt!);
+        })
     });
 };

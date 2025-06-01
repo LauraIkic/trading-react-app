@@ -24,19 +24,31 @@ export interface AuthResponseDto {
      * @type {string}
      * @memberof AuthResponseDto
      */
-    token?: string;
+    jwt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof AuthResponseDto
+     */
+    status?: boolean;
     /**
      * 
      * @type {string}
      * @memberof AuthResponseDto
      */
-    userId?: string;
+    message?: string;
     /**
-     * Token expiry time in seconds
-     * @type {number}
+     * 
+     * @type {boolean}
      * @memberof AuthResponseDto
      */
-    expiresIn?: number;
+    isTwoFactorAuthEnabled?: boolean;
+    /**
+     * 
+     * @type {any}
+     * @memberof AuthResponseDto
+     */
+    session?: any | null;
 }
 
 /**
@@ -56,9 +68,11 @@ export function AuthResponseDtoFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
-        'token': json['token'] == null ? undefined : json['token'],
-        'userId': json['userId'] == null ? undefined : json['userId'],
-        'expiresIn': json['expiresIn'] == null ? undefined : json['expiresIn'],
+        'jwt': json['jwt'] == null ? undefined : json['jwt'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'message': json['message'] == null ? undefined : json['message'],
+        'isTwoFactorAuthEnabled': json['isTwoFactorAuthEnabled'] == null ? undefined : json['isTwoFactorAuthEnabled'],
+        'session': json['session'] == null ? undefined : json['session'],
     };
 }
 
@@ -73,9 +87,11 @@ export function AuthResponseDtoToJSONTyped(value?: AuthResponseDto | null, ignor
 
     return {
         
-        'token': value['token'],
-        'userId': value['userId'],
-        'expiresIn': value['expiresIn'],
+        'jwt': value['jwt'],
+        'status': value['status'],
+        'message': value['message'],
+        'isTwoFactorAuthEnabled': value['isTwoFactorAuthEnabled'],
+        'session': value['session'],
     };
 }
 

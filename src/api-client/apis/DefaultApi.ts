@@ -20,8 +20,11 @@ import type {
   LoginRequestDto,
   OrderCreateDto,
   OrderDto,
+  PortfolioDto,
+  PortfolioItemDto,
   SignupRequestDto,
   WalletRequestDto,
+  WalletResponseDto,
 } from '../models/index';
 import {
     AuthResponseDtoFromJSON,
@@ -34,10 +37,16 @@ import {
     OrderCreateDtoToJSON,
     OrderDtoFromJSON,
     OrderDtoToJSON,
+    PortfolioDtoFromJSON,
+    PortfolioDtoToJSON,
+    PortfolioItemDtoFromJSON,
+    PortfolioItemDtoToJSON,
     SignupRequestDtoFromJSON,
     SignupRequestDtoToJSON,
     WalletRequestDtoFromJSON,
     WalletRequestDtoToJSON,
+    WalletResponseDtoFromJSON,
+    WalletResponseDtoToJSON,
 } from '../models/index';
 
 export interface CoinIdGetRequest {
@@ -54,6 +63,10 @@ export interface CreateUserRequest {
 
 export interface LoginUserRequest {
     loginRequestDto: LoginRequestDto;
+}
+
+export interface PatchWalletRequest {
+    walletRequestDto: WalletRequestDto;
 }
 
 /**
@@ -111,8 +124,16 @@ export class DefaultApi extends runtime.BaseAPI {
 
         headerParameters['Content-Type'] = 'application/json';
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
-            path: `/order`,
+            path: `/api/order`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
@@ -167,6 +188,74 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * Get user orders
+     */
+    async getMyOrdersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderDto>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/orders`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OrderDtoFromJSON));
+    }
+
+    /**
+     * Get user orders
+     */
+    async getMyOrders(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderDto>> {
+        const response = await this.getMyOrdersRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get portfolio items
+     */
+    async getPortfolioItemsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PortfolioItemDto>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/portfolio/items`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PortfolioItemDtoFromJSON));
+    }
+
+    /**
+     * Get portfolio items
+     */
+    async getPortfolioItems(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PortfolioItemDto>> {
+        const response = await this.getPortfolioItemsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * User login
      */
     async loginUserRaw(requestParameters: LoginUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AuthResponseDto>> {
@@ -203,6 +292,50 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
+     * Add or withdraw money to/from wallet
+     */
+    async patchWalletRaw(requestParameters: PatchWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletResponseDto>> {
+        if (requestParameters['walletRequestDto'] == null) {
+            throw new runtime.RequiredError(
+                'walletRequestDto',
+                'Required parameter "walletRequestDto" was null or undefined when calling patchWallet().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/wallet`,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: WalletRequestDtoToJSON(requestParameters['walletRequestDto']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WalletResponseDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Add or withdraw money to/from wallet
+     */
+    async patchWallet(requestParameters: PatchWalletRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletResponseDto> {
+        const response = await this.patchWalletRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get list of all coins
      */
     async readCoinsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CoinDto>>> {
@@ -210,8 +343,16 @@ export class DefaultApi extends runtime.BaseAPI {
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
-            path: `/coin`,
+            path: `/api/coin`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -229,28 +370,70 @@ export class DefaultApi extends runtime.BaseAPI {
     }
 
     /**
-     * Get wallet balance
+     * Get user portfolio
      */
-    async walletGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletRequestDto>> {
+    async readPortfolioRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PortfolioDto>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
-            path: `/wallet`,
+            path: `/api/portfolio`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WalletRequestDtoFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PortfolioDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Get user portfolio
+     */
+    async readPortfolio(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PortfolioDto> {
+        const response = await this.readPortfolioRaw(initOverrides);
+        return await response.value();
     }
 
     /**
      * Get wallet balance
      */
-    async walletGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletRequestDto> {
-        const response = await this.walletGetRaw(initOverrides);
+    async readWalletRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WalletResponseDto>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/wallet`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WalletResponseDtoFromJSON(jsonValue));
+    }
+
+    /**
+     * Get wallet balance
+     */
+    async readWallet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WalletResponseDto> {
+        const response = await this.readWalletRaw(initOverrides);
         return await response.value();
     }
 
