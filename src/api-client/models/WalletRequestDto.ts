@@ -24,13 +24,13 @@ export interface WalletRequestDto {
      * @type {string}
      * @memberof WalletRequestDto
      */
-    amount?: string;
+    amount: string;
     /**
      * 
      * @type {string}
      * @memberof WalletRequestDto
      */
-    type?: WalletRequestDtoTypeEnum;
+    type: WalletRequestDtoTypeEnum;
 }
 
 
@@ -48,6 +48,8 @@ export type WalletRequestDtoTypeEnum = typeof WalletRequestDtoTypeEnum[keyof typ
  * Check if a given object implements the WalletRequestDto interface.
  */
 export function instanceOfWalletRequestDto(value: object): value is WalletRequestDto {
+    if (!('amount' in value) || value['amount'] === undefined) return false;
+    if (!('type' in value) || value['type'] === undefined) return false;
     return true;
 }
 
@@ -61,8 +63,8 @@ export function WalletRequestDtoFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'amount': json['amount'] == null ? undefined : json['amount'],
-        'type': json['type'] == null ? undefined : json['type'],
+        'amount': json['amount'],
+        'type': json['type'],
     };
 }
 

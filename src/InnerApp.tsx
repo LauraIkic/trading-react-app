@@ -25,7 +25,7 @@ function InnerApp() {
                                 <span>Welcome !</span>
                                 <button
                                     className="nav-auth-btn logout"
-                                    onClick={() => {}}
+                                    onClick={() => {user.logout()}}
                                 >
                                     Logout
                                 </button>

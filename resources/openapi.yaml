@@ -117,11 +117,15 @@ components:
 
     WalletRequestDto:
       type: object
+      required:
+        - amount
+        - type
       properties:
         amount:
           type: string
         type:
-          enum: [DEPOSIT, WITHDRAW]
+          type: string
+          enum: [ DEPOSIT, WITHDRAW ]
 
     WalletResponseDto:
       type: object
@@ -291,7 +295,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletResponseDto'
-    patch:
+    post:
       summary: Add or withdraw money to/from wallet
       operationId: patchWallet
       security:

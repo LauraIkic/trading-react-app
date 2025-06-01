@@ -318,7 +318,7 @@ export class DefaultApi extends runtime.BaseAPI {
         }
         const response = await this.request({
             path: `/api/wallet`,
-            method: 'PATCH',
+            method: 'POST',
             headers: headerParameters,
             query: queryParameters,
             body: WalletRequestDtoToJSON(requestParameters['walletRequestDto']),

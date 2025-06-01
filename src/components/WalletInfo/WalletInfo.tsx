@@ -6,13 +6,17 @@ import {readCoinsQuery} from "../../queries/readCoins";
 import {readWalletQuery} from "../../queries/readWallet";
 import {useAuthStore} from "../../stores/useAuthenticationStore";
 import {WalletBalanceCard} from "./WalletBalanceCard";
+import {readPortfolioQuery} from "../../queries/readPortfolio";
 
 export const walletRefreshEvent = new EventTarget();
 
 export const WalletInfo: React.FunctionComponent = () => {
     const {data: walletData, isLoading, error} = useQuery(readWalletQuery);
+    const {data: portfolio} = useQuery(readPortfolioQuery);
+
     const user = useAuthStore();
     console.log('wallet', walletData)
+    console.log('portfolio', portfolio)
     return (
         // <div className="empty-state">
         //     <h3>Anmeldung erforderlich</h3>
