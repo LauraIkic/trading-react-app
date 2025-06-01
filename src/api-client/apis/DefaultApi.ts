@@ -18,8 +18,8 @@ import type {
   AuthResponseDto,
   CoinDto,
   LoginRequestDto,
+  Order,
   OrderCreateDto,
-  OrderDto,
   PortfolioDto,
   SignupRequestDto,
   WalletRequestDto,
@@ -32,10 +32,10 @@ import {
     CoinDtoToJSON,
     LoginRequestDtoFromJSON,
     LoginRequestDtoToJSON,
+    OrderFromJSON,
+    OrderToJSON,
     OrderCreateDtoFromJSON,
     OrderCreateDtoToJSON,
-    OrderDtoFromJSON,
-    OrderDtoToJSON,
     PortfolioDtoFromJSON,
     PortfolioDtoToJSON,
     SignupRequestDtoFromJSON,
@@ -107,7 +107,7 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      * Create a new order
      */
-    async createOrderRaw(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderDto>> {
+    async createOrderRaw(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Order>> {
         if (requestParameters['orderCreateDto'] == null) {
             throw new runtime.RequiredError(
                 'orderCreateDto',
@@ -137,13 +137,13 @@ export class DefaultApi extends runtime.BaseAPI {
             body: OrderCreateDtoToJSON(requestParameters['orderCreateDto']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OrderDtoFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderFromJSON(jsonValue));
     }
 
     /**
      * Create a new order
      */
-    async createOrder(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderDto> {
+    async createOrder(requestParameters: CreateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Order> {
         const response = await this.createOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -181,40 +181,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async createUser(requestParameters: CreateUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AuthResponseDto> {
         const response = await this.createUserRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get user orders
-     */
-    async getMyOrdersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<OrderDto>>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("BearerAuth", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/orders`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OrderDtoFromJSON));
-    }
-
-    /**
-     * Get user orders
-     */
-    async getMyOrders(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderDto>> {
-        const response = await this.getMyOrdersRaw(initOverrides);
         return await response.value();
     }
 
@@ -329,6 +295,40 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async readCoins(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CoinDto>> {
         const response = await this.readCoinsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get user orders
+     */
+    async readOrdersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Order>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("BearerAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/api/order`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(OrderFromJSON));
+    }
+
+    /**
+     * Get user orders
+     */
+    async readOrders(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Order>> {
+        const response = await this.readOrdersRaw(initOverrides);
         return await response.value();
     }
 

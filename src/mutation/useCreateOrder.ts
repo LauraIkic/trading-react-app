@@ -8,12 +8,12 @@ export const useCreateOrder = () => {
     const api = new DefaultApi(
         new Configuration({
             basePath: 'http://localhost:5456',
-            accessToken: token ? `Bearer ${token}` : undefined,
+            accessToken: token!,
         })
     );
 
     return useMutation({
         mutationFn: (data: OrderCreateDto) =>
-            api.createOrder({ orderCreateDto: data })
+            api.createOrder({ orderCreateDto: data }, {})
     });
 };

@@ -8,7 +8,7 @@ export const useBalanceMutation = () => {
     const api = new DefaultApi(
         new Configuration({
             basePath: 'http://localhost:5456',
-            accessToken: token ? `Bearer ${token}` : undefined,
+            accessToken: token!,
         })
     );
 

@@ -150,29 +150,35 @@ components:
           type: string
           enum: [BUY, SELL]
 
-    OrderDto:
+    Order:
       type: object
       properties:
         id:
           type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
         coinId:
           type: string
         quantity:
           type: number
+          format: double
         price:
           type: number
+          format: double
         type:
           type: string
-          enum: [BUY, SELL]
+          enum: [ BUY, SELL ]
         status:
           type: string
-          enum: [OPEN, EXECUTED, CANCELLED]
-        userId:
-          type: string
+          enum: [ OPEN, EXECUTED, CANCELLED ]
         referenceId:
           type: string
+          format: uuid
         version:
           type: integer
+          format: int64
 
     PortfolioDto:
       type: object
@@ -309,6 +315,22 @@ paths:
                 $ref: '#/components/schemas/WalletResponseDto'
 
   /api/order:
+    get:
+      summary: Get user orders
+      operationId: readOrders
+      security:
+        - BearerAuth: [ ]
+      responses:
+        '200':
+          description: List of user orders
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized
     post:
       summary: Create a new order
       operationId: createOrder
@@ -326,7 +348,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderDto'
+                $ref: '#/components/schemas/Order'
         '400':
           description: Bad request
 
@@ -343,23 +365,5 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PortfolioDto'
-        '401':
-          description: Unauthorized
-
-  /api/orders:
-    get:
-      summary: Get user orders
-      operationId: getMyOrders
-      security:
-        - BearerAuth: []
-      responses:
-        '200':
-          description: List of user orders
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/OrderDto'
         '401':
           description: Unauthorized

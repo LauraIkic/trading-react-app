@@ -2,7 +2,7 @@ import React from 'react';
 import {TableWrapper, StyledHeading} from "../CoinInfo/CoinList.styles";
 import {useQuery} from "@tanstack/react-query";
 import {readPortfolioQuery} from "../../queries/readPortfolio";
-import {PortfolioAsset} from "./PortfolioAsset";
+import {Asset} from "../../api-client";
 
 export const PortfolioInfo: React.FunctionComponent = () => {
     const {data: portfolio ,isLoading, error} = useQuery(readPortfolioQuery);
@@ -28,41 +28,53 @@ export const PortfolioInfo: React.FunctionComponent = () => {
     ];
 
     return (
-        <TableWrapper>
+        <TableWrapper style={{background: '#8e8b9324'}}>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem'}}>
                 <StyledHeading>My Portfolio</StyledHeading>
             </div>
 
-            {isLoading && (
-                <div className="error-state">
-                    <h3>Loading</h3>
+            {isLoading ? (
+                <div className="status-state loading">
+                    <h3>Loading portfolio...</h3>
                 </div>
-            )}
-
-            {error && (
-            <div className="error-state">
-                <h3>Error while loading wallet data</h3>
-            </div>
-            )}
-
-            {!portfolio?.assets && (
-                <div className="error-state">
-                    <h3>Your portfolio is empty</h3>
+            ) : error ? (
+                <div className="status-state error">
+                    <h3>Something went wrong.</h3>
                 </div>
+            ) : (
+                <table className="crypt-style-table">
+                    <thead>
+                    <tr>
+                        <th>Asset</th>
+                        <th>Quantity</th>
+                        <th>Value</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {assets.map((asset: Asset) => (
+                        <tr key={asset.id}>
+                            <td>
+                                <div className="asset-cell">
+                                    {/*<img className="coin-logo" src={coin.image} alt={coin.name} />*/}
+                                    <div className="coin-details">
+                                        <div className="coin-name">{asset.coinId}</div>
+                                        {/*<div className="coin-symbol">{coin.symbol?.toUpperCase()}</div>*/}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>{asset.quantity}</td>
+                            <td>${asset.value}</td>
+                            <td>
+                                <button className="order-btn" onClick={() => {}}>
+                                    SELL
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             )}
-
-            <thead>
-            <tr>
-                <th>Coin</th>
-                <th>Quantity</th>
-                {/*<th>Current Value</th>*/}
-            </tr>
-            </thead>
-            <tbody>
-            {assets.map((asset) => (
-                <PortfolioAsset key={asset.id} asset={asset} />
-            ))}
-            </tbody>
 
         </TableWrapper>
     );

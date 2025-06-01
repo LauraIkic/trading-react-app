@@ -5,8 +5,8 @@ models/Asset.ts
 models/AuthResponseDto.ts
 models/CoinDto.ts
 models/LoginRequestDto.ts
+models/Order.ts
 models/OrderCreateDto.ts
-models/OrderDto.ts
 models/PortfolioDto.ts
 models/SignupRequestDto.ts
 models/WalletRequestDto.ts

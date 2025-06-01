@@ -22,7 +22,6 @@ function InnerApp() {
 
                         {user.isAuthenticated ? (
                             <div style={{display: 'flex', alignItems: 'center', gap: '1rem'}}>
-                                <span>Welcome !</span>
                                 <button
                                     className="nav-auth-btn logout"
                                     onClick={() => {user.logout()}}
@@ -41,10 +40,15 @@ function InnerApp() {
                 </nav>
 
                 <main className="main-content">
-                    <Routes>
-                        <Route path="/" element={<Dashboard/>}/>
-                        <Route path="/coins" element={<CoinList/>}/>
-                    </Routes>
+                    {user.isAuthenticated ? (
+                        <Dashboard/>
+                    ) : (
+                        <div className="empty-state">
+                            <h3>Anmeldung erforderlich</h3>
+                            <p>Melde dich an, um dein Wallet zu sehen und Kryptowährungen zu handeln.</p>
+                        </div>
+                    )}
+
                 </main>
 
                 <AuthModal

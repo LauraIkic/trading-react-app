@@ -24,10 +24,6 @@ export const CoinList: React.FunctionComponent = () => {
         setSelectedCoin(null);
     };
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <div>Fehler beim Laden der Coins.</div>;
-    if (!coins) return <div>Keine Daten.</div>;
-
     return (
         <>
             <TableWrapper>
@@ -35,17 +31,26 @@ export const CoinList: React.FunctionComponent = () => {
                     <StyledHeading>Coin List</StyledHeading>
                 </div>
 
-                <table className="crypt-style-table">
-                    <thead>
+                {isLoading ? (
+                    <div className="status-state loading">
+                        <h3>Loading Wallet...</h3>
+                    </div>
+                ) : error ? (
+                    <div className="status-state error">
+                        <h3>Something went wrong.</h3>
+                    </div>
+                ) : (
+                    <table className="crypt-style-table">
+                        <thead>
                         <tr>
                             <th>Asset</th>
                             <th>Price</th>
                             <th>Market Cap</th>
                             <th>Action</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {coins.map((coin: CoinDto) => (
+                        </thead>
+                        <tbody>
+                        {coins?.map((coin: CoinDto) => (
                             <tr key={coin.id}>
                                 <td>
                                     <div className="asset-cell">
@@ -65,8 +70,11 @@ export const CoinList: React.FunctionComponent = () => {
                                 </td>
                             </tr>
                         ))}
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+
+                )}
+
             </TableWrapper>
 
             <AuthModal
