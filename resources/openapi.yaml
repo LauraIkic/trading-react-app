@@ -179,27 +179,21 @@ components:
       properties:
         id:
           type: string
-        portfolioItems:
+        assets:
           type: array
           items:
-            $ref: '#/components/schemas/PortfolioItemDto'
+            $ref: '#/components/schemas/Asset'
 
-    PortfolioItemDto:
+    Asset:
       type: object
       properties:
         id:
           type: string
         coinId:
           type: string
-        coinName:
-          type: string
-        coinSymbol:
-          type: string
         quantity:
           type: number
-        averagePrice:
-          type: number
-        currentPrice:
+        value:
           type: number
 
 security: []  # Default no security globally (can be overridden per-path)
@@ -349,24 +343,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PortfolioDto'
-        '401':
-          description: Unauthorized
-
-  /api/portfolio/items:
-    get:
-      summary: Get portfolio items
-      operationId: getPortfolioItems
-      security:
-        - BearerAuth: []
-      responses:
-        '200':
-          description: List of portfolio items
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/PortfolioItemDto'
         '401':
           description: Unauthorized
 

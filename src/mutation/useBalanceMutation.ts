@@ -16,11 +16,9 @@ export const useBalanceMutation = () => {
         mutationFn: (data: WalletRequestDto) =>
             api.patchWallet({ walletRequestDto: data })
                 .then((res) => {
-                    console.log(res);
-                    return res;
+                    console.log('res', res)
                 })
                 .catch((error) => {
-                    console.error(error);
                     throw error;
                 }),
     });

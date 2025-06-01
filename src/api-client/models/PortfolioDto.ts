@@ -13,13 +13,13 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PortfolioItemDto } from './PortfolioItemDto';
+import type { Asset } from './Asset';
 import {
-    PortfolioItemDtoFromJSON,
-    PortfolioItemDtoFromJSONTyped,
-    PortfolioItemDtoToJSON,
-    PortfolioItemDtoToJSONTyped,
-} from './PortfolioItemDto';
+    AssetFromJSON,
+    AssetFromJSONTyped,
+    AssetToJSON,
+    AssetToJSONTyped,
+} from './Asset';
 
 /**
  * 
@@ -35,10 +35,10 @@ export interface PortfolioDto {
     id?: string;
     /**
      * 
-     * @type {Array<PortfolioItemDto>}
+     * @type {Array<Asset>}
      * @memberof PortfolioDto
      */
-    portfolioItems?: Array<PortfolioItemDto>;
+    assets?: Array<Asset>;
 }
 
 /**
@@ -59,7 +59,7 @@ export function PortfolioDtoFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'id': json['id'] == null ? undefined : json['id'],
-        'portfolioItems': json['portfolioItems'] == null ? undefined : ((json['portfolioItems'] as Array<any>).map(PortfolioItemDtoFromJSON)),
+        'assets': json['assets'] == null ? undefined : ((json['assets'] as Array<any>).map(AssetFromJSON)),
     };
 }
 
@@ -75,7 +75,7 @@ export function PortfolioDtoToJSONTyped(value?: PortfolioDto | null, ignoreDiscr
     return {
         
         'id': value['id'],
-        'portfolioItems': value['portfolioItems'] == null ? undefined : ((value['portfolioItems'] as Array<any>).map(PortfolioItemDtoToJSON)),
+        'assets': value['assets'] == null ? undefined : ((value['assets'] as Array<any>).map(AssetToJSON)),
     };
 }
 

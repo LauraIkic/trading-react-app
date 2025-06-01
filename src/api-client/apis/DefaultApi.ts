@@ -21,7 +21,6 @@ import type {
   OrderCreateDto,
   OrderDto,
   PortfolioDto,
-  PortfolioItemDto,
   SignupRequestDto,
   WalletRequestDto,
   WalletResponseDto,
@@ -39,8 +38,6 @@ import {
     OrderDtoToJSON,
     PortfolioDtoFromJSON,
     PortfolioDtoToJSON,
-    PortfolioItemDtoFromJSON,
-    PortfolioItemDtoToJSON,
     SignupRequestDtoFromJSON,
     SignupRequestDtoToJSON,
     WalletRequestDtoFromJSON,
@@ -218,40 +215,6 @@ export class DefaultApi extends runtime.BaseAPI {
      */
     async getMyOrders(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<OrderDto>> {
         const response = await this.getMyOrdersRaw(initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Get portfolio items
-     */
-    async getPortfolioItemsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<PortfolioItemDto>>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("BearerAuth", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/api/portfolio/items`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(PortfolioItemDtoFromJSON));
-    }
-
-    /**
-     * Get portfolio items
-     */
-    async getPortfolioItems(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<PortfolioItemDto>> {
-        const response = await this.getPortfolioItemsRaw(initOverrides);
         return await response.value();
     }
 
