@@ -295,7 +295,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WalletResponseDto'
-    post:
+    patch:
       summary: Add or withdraw money to/from wallet
       operationId: patchWallet
       security:
