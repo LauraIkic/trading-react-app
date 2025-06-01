@@ -5,14 +5,11 @@ import './CoinList.css';
 import { TableWrapper, StyledHeading } from "./CoinList.styles";
 import { readCoinsQuery } from '../../queries/readCoins';
 import { OrderModal } from '../OrderModal/OrderModal';
-import { AuthModal } from '../Auth/AuthModal';
 
 export const CoinList: React.FunctionComponent = () => {
-
     const { data: coins, isLoading, error } = useQuery(readCoinsQuery);
     const [selectedCoin, setSelectedCoin] = React.useState<CoinDto | null>(null);
     const [isModalOpen, setIsModalOpen] = React.useState(false);
-    const [isAuthModalOpen, setIsAuthModalOpen] = React.useState(false);
 
     const handleOrder = async (coin: CoinDto) => {
         setSelectedCoin(coin);
@@ -76,12 +73,6 @@ export const CoinList: React.FunctionComponent = () => {
                 )}
 
             </TableWrapper>
-
-            <AuthModal
-                isOpen={isAuthModalOpen}
-                onClose={() => setIsAuthModalOpen(false)}
-                onSuccess={() => {}}
-            />
 
             {selectedCoin && (
                 <OrderModal

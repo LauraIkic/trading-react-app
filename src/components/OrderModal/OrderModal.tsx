@@ -45,12 +45,11 @@ export const OrderModal: React.FC<Props> = ({ coin, isOpen, onClose, onSubmit })
     return (
         <div className="modal-overlay">
             <div className="modal">
-                <h2>Order für {coin.name}</h2>
+                <h2>Order for {coin.name}</h2>
                 <p className="text-muted">
-                    Aktueller Preis: <strong>${coinPrice.toFixed(4)}</strong>
+                    Current Price: <strong>${coinPrice.toFixed(4)}</strong>
                 </p>
 
-                {/* Toggle between USD and Coin */}
                 <div className="currency-switch">
                     <button
                         className={`switch-btn ${inputMode === 'dollars' ? 'active' : ''}`}
@@ -68,7 +67,6 @@ export const OrderModal: React.FC<Props> = ({ coin, isOpen, onClose, onSubmit })
                     </button>
                 </div>
 
-                {/* Amount Display */}
                 <div className="amount-display">
                     {inputMode === 'dollars' ? (
                         <>
@@ -105,18 +103,17 @@ export const OrderModal: React.FC<Props> = ({ coin, isOpen, onClose, onSubmit })
                     )}
                 </div>
 
-                {/* Action Buttons */}
                 <button className="buy-btn" onClick={onBuyClick} disabled={isPending}>
-                    {isPending ? 'Kaufe...' : 'Kaufen'}
+                    {isPending ? 'Processing...' : 'BUY'}
                 </button>
 
                 <button className="cancel-btn" onClick={onClose} disabled={isPending}>
-                    Abbrechen
+                    Cancel
                 </button>
 
                 {error && (
                     <p className="error-text" style={{ color: 'red', marginTop: '10px' }}>
-                        Fehler beim Erstellen der Order: {(error as Error).message}
+                        Error while creating order: {(error as Error).message}
                     </p>
                 )}
             </div>

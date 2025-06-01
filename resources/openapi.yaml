@@ -196,7 +196,7 @@ components:
         id:
           type: string
         coinId:
-          type: string
+          $ref: '#/components/schemas/CoinDto'
         quantity:
           type: number
         value:

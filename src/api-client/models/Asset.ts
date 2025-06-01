@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { CoinDto } from './CoinDto';
+import {
+    CoinDtoFromJSON,
+    CoinDtoFromJSONTyped,
+    CoinDtoToJSON,
+    CoinDtoToJSONTyped,
+} from './CoinDto';
+
 /**
  * 
  * @export
@@ -27,10 +35,10 @@ export interface Asset {
     id?: string;
     /**
      * 
-     * @type {string}
+     * @type {CoinDto}
      * @memberof Asset
      */
-    coinId?: string;
+    coinId?: CoinDto;
     /**
      * 
      * @type {number}
@@ -63,7 +71,7 @@ export function AssetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ass
     return {
         
         'id': json['id'] == null ? undefined : json['id'],
-        'coinId': json['coinId'] == null ? undefined : json['coinId'],
+        'coinId': json['coinId'] == null ? undefined : CoinDtoFromJSON(json['coinId']),
         'quantity': json['quantity'] == null ? undefined : json['quantity'],
         'value': json['value'] == null ? undefined : json['value'],
     };
@@ -81,7 +89,7 @@ export function AssetToJSONTyped(value?: Asset | null, ignoreDiscriminator: bool
     return {
         
         'id': value['id'],
-        'coinId': value['coinId'],
+        'coinId': CoinDtoToJSON(value['coinId']),
         'quantity': value['quantity'],
         'value': value['value'],
     };

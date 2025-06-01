@@ -62,7 +62,7 @@
 }
 
 .balance-amount.invested {
-    color: #007bff;
+    color: #866cee;
 }
 
 .balance-amount.total {
@@ -86,7 +86,7 @@
 .coin-placeholder {
     width: 32px;
     height: 32px;
-    background: #007bff;
+    background: #866cee;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -110,7 +110,7 @@
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 8px;
-    border-left: 4px solid #007bff;
+    border-left: 4px solid #866cee;
 }
 
 .transaction-info {
@@ -189,7 +189,7 @@
     padding: 0.75rem 1rem;
     border-radius: 8px;
     font-size: 0.9rem;
-    color: #0066cc;
+    color: #866cee;
     display: inline-block;
 }
 

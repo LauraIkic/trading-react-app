@@ -6,6 +6,8 @@ import {Asset} from "../../api-client";
 
 export const PortfolioInfo: React.FunctionComponent = () => {
     const {data: portfolio ,isLoading, error} = useQuery(readPortfolioQuery);
+    console.log('portfolio', portfolio?.assets)
+
     const assets = [
         {
             id: '23413',
@@ -47,24 +49,26 @@ export const PortfolioInfo: React.FunctionComponent = () => {
                     <tr>
                         <th>Asset</th>
                         <th>Quantity</th>
+                        <th>Purchase Price</th>
                         <th>Value</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {assets.map((asset: Asset) => (
+                    {portfolio?.assets?.map((asset: Asset) => (
                         <tr key={asset.id}>
                             <td>
                                 <div className="asset-cell">
-                                    {/*<img className="coin-logo" src={coin.image} alt={coin.name} />*/}
+                                    <img className="coin-logo" src={asset.coinId?.image} alt={asset.coinId?.name} />
                                     <div className="coin-details">
-                                        <div className="coin-name">{asset.coinId}</div>
-                                        {/*<div className="coin-symbol">{coin.symbol?.toUpperCase()}</div>*/}
+                                        <div className="coin-name">{asset.coinId?.name}</div>
+                                        <div className="coin-symbol">{asset.coinId?.symbol?.toUpperCase()}</div>
                                     </div>
                                 </div>
                             </td>
                             <td>{asset.quantity}</td>
                             <td>${asset.value}</td>
+                            <td>${asset.quantity! * asset.value!}</td>
                             <td>
                                 <button className="order-btn" onClick={() => {}}>
                                     SELL
@@ -75,7 +79,6 @@ export const PortfolioInfo: React.FunctionComponent = () => {
                     </tbody>
                 </table>
             )}
-
         </TableWrapper>
     );
 };

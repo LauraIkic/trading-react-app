@@ -59,12 +59,12 @@
 }
 
 .nav-auth-btn.login {
-  background: #007bff;
+  background: #866cee;
   color: white;
 }
 
 .nav-auth-btn.login:hover {
-  background: #0056b3;
+  background: #211a38;
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 123, 255, 0.3);
 }

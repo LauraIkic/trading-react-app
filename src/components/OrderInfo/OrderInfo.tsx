@@ -6,8 +6,6 @@ import { readOrderQuery } from "../../queries/readOrders";
 export const OrderInfo: React.FunctionComponent = () => {
     const { data: orders, isLoading, error } = useQuery(readOrderQuery);
 
-    console.log('orders', orders);
-
     return (
         <TableWrapper style={{ background: '#8e8b9324' }}>
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem'}}>
@@ -46,7 +44,6 @@ export const OrderInfo: React.FunctionComponent = () => {
                     </tbody>
                 </table>
             )}
-
         </TableWrapper>
     );
 };
